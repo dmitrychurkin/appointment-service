@@ -16,11 +16,13 @@ abstract class AppointmentSlot extends Data
         public readonly Carbon $start,
         public readonly Carbon $end
     ) {
-        $this->configuration = AppointmentConfiguration::from(config('appointment'));
+        $this->withConfiguration();
     }
 
-    public function withConfiguration(?AppointmentConfiguration $configuration = null): AppointmentConfiguration
+    public function withConfiguration(?AppointmentConfiguration $configuration = null): static
     {
-        return $configuration ?? $this->configuration;
+        $this->configuration = $configuration ?? AppointmentConfiguration::from(config('appointment'));
+
+        return $this;
     }
 }

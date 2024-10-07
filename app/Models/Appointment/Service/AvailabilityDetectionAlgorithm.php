@@ -8,9 +8,9 @@ use App\Models\Appointment\Data\AppointmentSlot;
 
 final class AvailabilityDetectionAlgorithm
 {
-    public static function boot(array ...$args): self
+    public static function init(AppointmentSlot $appointmentSlot, array ...$restArgs): self
     {
-        return new self(...$args);
+        return new self($appointmentSlot, ...$restArgs);
     }
 
     private AvailabilitySlot $availabilitySlot;
@@ -19,19 +19,12 @@ final class AvailabilityDetectionAlgorithm
         private readonly AppointmentSlot $appointmentSlot,
         ?AvailabilitySlot $availabilitySlot = null
     ) {
+        $this->withAvailabilitySlot($availabilitySlot);
+    }
+
+    public function withAvailabilitySlot(?AvailabilitySlot $availabilitySlot = null)
+    {
         $this->availabilitySlot = $availabilitySlot ?? $this->createAvailabilitySlot();
-    }
-
-    public function setAvailabilitySlot(AvailabilitySlot $availabilitySlot)
-    {
-        $this->availabilitySlot = $availabilitySlot;
-
-        return $this;
-    }
-
-    public function setAppointmentSlot(AppointmentSlot $appointmentSlot)
-    {
-        $this->appointmentSlot = $appointmentSlot;
 
         return $this;
     }

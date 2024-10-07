@@ -18,7 +18,7 @@ final class Appointment implements AppointmentContract
 
             match ($availabilitySlot) {
                 true => $this->createAvailabilitySlot($appointmentSlot),
-                default => $this->updateAvailabilitySlot($availabilitySlot),
+                default => $this->updateAvailabilitySlot($appointmentSlot, $availabilitySlot),
             };
         });
     }
@@ -33,7 +33,7 @@ final class Appointment implements AppointmentContract
         // create appointment
     }
 
-    private function updateAvailabilitySlot(AvailabilitySlot $availabilitySlot): void
+    private function updateAvailabilitySlot(AppointmentSlot $appointmentSlot, AvailabilitySlot $availabilitySlot): void
     {
         // update appointment
     }

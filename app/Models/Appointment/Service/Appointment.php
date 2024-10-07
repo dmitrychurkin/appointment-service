@@ -18,12 +18,12 @@ final class Appointment implements AppointmentContract
 
             match ($availabilitySlot) {
                 true => $this->createAvailabilitySlot($appointmentSlot),
-                default => $this->updateAvailabilitySlot($availabilitySlot),
+                default => $this->updateAvailabilitySlot($appointmentSlot, $availabilitySlot),
             };
         });
     }
 
-    private function getAvailabilitySlot(AppointmentSlot $appointmentSlot): true | AvailabilitySlot
+    private function getAvailabilitySlot(AppointmentSlot $appointmentSlot): true|AvailabilitySlot
     {
         return AvailabilitySlot::doesntExist() ?: AvailabilitySlot::whereHasAvailabilitySlot($appointmentSlot)->firstOrFail();
     }
@@ -33,7 +33,7 @@ final class Appointment implements AppointmentContract
         // create appointment
     }
 
-    private function updateAvailabilitySlot(AvailabilitySlot $availabilitySlot): void
+    private function updateAvailabilitySlot(AppointmentSlot $appointmentSlot, AvailabilitySlot $availabilitySlot): void
     {
         // update appointment
     }

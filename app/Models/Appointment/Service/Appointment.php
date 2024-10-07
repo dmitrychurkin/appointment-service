@@ -23,7 +23,7 @@ final class Appointment implements AppointmentContract
         });
     }
 
-    private function getAvailabilitySlot(AppointmentSlot $appointmentSlot): true | AvailabilitySlot
+    private function getAvailabilitySlot(AppointmentSlot $appointmentSlot): true|AvailabilitySlot
     {
         return AvailabilitySlot::doesntExist() ?: AvailabilitySlot::whereHasAvailabilitySlot($appointmentSlot)->firstOrFail();
     }

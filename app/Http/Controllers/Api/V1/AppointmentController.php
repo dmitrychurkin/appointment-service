@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Appointment\{StoreAppointmentRequest, UpdateAppointmentRequest};
+use App\Http\Requests\Appointment\StoreAppointmentRequest;
+use App\Http\Requests\Appointment\UpdateAppointmentRequest;
 use App\Models\Appointment\Aggregate\Appointment;
 use App\Models\Appointment\Command\CreateAppointment;
 use App\Models\Appointment\Contract\Appointment as AppointmentService;

@@ -4,7 +4,8 @@ namespace App\Models\Appointment\Aggregate;
 
 use App\Models\Common\Concerns\Uuids;
 use Carbon\CarbonImmutable;
-use Ecotone\Modelling\Attribute\{Aggregate, IdentifierMethod};
+use Ecotone\Modelling\Attribute\Aggregate;
+use Ecotone\Modelling\Attribute\IdentifierMethod;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

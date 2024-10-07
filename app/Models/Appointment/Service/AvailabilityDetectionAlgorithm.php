@@ -3,7 +3,8 @@
 namespace App\Models\Appointment\Service;
 
 use App\Models\Appointment\Aggregate\AvailabilitySlot;
-use App\Models\Appointment\Data\{AppointmentConfiguration, AppointmentSlot};
+use App\Models\Appointment\Data\AppointmentConfiguration;
+use App\Models\Appointment\Data\AppointmentSlot;
 
 final class AvailabilityDetectionAlgorithm
 {
@@ -48,7 +49,7 @@ final class AvailabilityDetectionAlgorithm
     private function createAvailabilitySlot(): AvailabilitySlot
     {
         $appointmentConfiguration = $this->getAppointmentConfiguration();
-        $availabilitySlot = new AvailabilitySlot();
+        $availabilitySlot = new AvailabilitySlot;
 
         $availabilitySlot->from = $this->appointmentSlot
             ->start

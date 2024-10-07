@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Appointment\{StoreAvailabilitySlotRequest, UpdateAvailabilitySlotRequest};
+use App\Http\Requests\Appointment\StoreAvailabilitySlotRequest;
+use App\Http\Requests\Appointment\UpdateAvailabilitySlotRequest;
 use App\Models\Appointment\Aggregate\AvailabilitySlot;
 
 class AvailabilitySlotController extends Controller

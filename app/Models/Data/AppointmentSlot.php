@@ -14,7 +14,7 @@ abstract class AppointmentSlot extends Data
 {
     use Slot;
 
-    private User $user;
+    private readonly User $user;
 
     public function __construct(
         private readonly Carbon $start,

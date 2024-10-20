@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('availability_slots', function (Blueprint $table) {
-            $table->uuid()->primary();
-            $table->dateTime('start');
-            $table->dateTime('end');
-            $table->date('date');
-            $table->integer('duration');
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->id();
+            $table->uuid()->unique();
+            $table->string('name');
+            $table->string('slug')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('availability_slots');
+        Schema::dropIfExists('accounts');
     }
 };

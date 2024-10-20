@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Appointment\StoreAppointmentRequest;
-use App\Http\Requests\Appointment\UpdateAppointmentRequest;
-use App\Models\Appointment\Aggregate\Appointment;
-use App\Models\Appointment\Command\CreateAppointment;
-use App\Models\Appointment\Contract\Appointment as AppointmentService;
+use App\Http\Requests\StoreAppointmentRequest;
+use App\Http\Requests\UpdateAppointmentRequest;
+use App\Models\Appointment;
+use App\Models\Command\CreateAppointment;
+use App\Models\Contract\Appointment as AppointmentService;
 
 class AppointmentController extends Controller
 {
@@ -24,7 +24,10 @@ class AppointmentController extends Controller
      */
     public function store(StoreAppointmentRequest $request, AppointmentService $service)
     {
-        $service->create(CreateAppointment::from($request->validated()));
+        $service->create(
+            CreateAppointment::from($request->validated())
+                ->withUser($request->user())
+        );
     }
 
     /**

@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.2",
         "ecotone/laravel": "^1.231",
-        "laravel/framework": "^11.25",
+        "laravel/framework": "^11.28",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10",
         "spatie/laravel-data": "^4.10",

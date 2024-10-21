@@ -4,36 +4,25 @@ namespace App\Models\Data;
 
 use App\Models\Account;
 use App\Models\AppointmentConfiguration;
-use App\Models\Concern\Slot;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Carbon;
-use Spatie\LaravelData\Data;
 
-abstract class AppointmentSlot extends Data
+abstract class AppointmentSlot extends Slot
 {
-    use Slot;
-
     private readonly User $user;
 
     public function __construct(
-        private readonly Carbon $start,
-        private readonly Carbon $end,
         private readonly string $title,
-    ) {}
+        array ...$args
+    ) {
+        parent::__construct(...$args);
+    }
 
     public function withUser(User $user): static
     {
         $this->user = $user;
 
         return $this;
-    }
-
-    public function isBetween(Carbon $start, Carbon $end): bool
-    {
-        return
-            $this->start->isBetween($start, $end) &&
-            $this->end->isBetween($start, $end);
     }
 
     public function getAccount(): Account

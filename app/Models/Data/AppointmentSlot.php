@@ -19,6 +19,7 @@ abstract class AppointmentSlot extends Data
     public function __construct(
         private readonly Carbon $start,
         private readonly Carbon $end,
+        private readonly string $title,
     ) {}
 
     public function withUser(User $user): static

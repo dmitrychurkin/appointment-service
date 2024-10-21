@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 
-class AvailabilityDetectionAlgorithmTest extends TestCase
+class AvailabilitySlotManagerTest extends TestCase
 {
     use RefreshDatabase;
 

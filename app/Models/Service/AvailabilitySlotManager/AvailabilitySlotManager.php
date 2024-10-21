@@ -4,6 +4,7 @@ namespace App\Models\Service\AvailabilitySlotManager;
 
 use App\Models\AppointmentAvailabilitySlot;
 use App\Models\Data\AppointmentSlot;
+use App\Models\Data\Slot;
 use App\Models\Service\AvailabilitySlotManager\Factory\AvailabilitySlot;
 use App\Models\Service\AvailabilitySlotManager\Factory\AvailabilitySlots;
 use Illuminate\Support\Collection;
@@ -46,9 +47,7 @@ final class AvailabilitySlotManager
         $appointmentConfiguration = $this->appointmentSlot->getAppointmentConfiguration();
 
         return $this->availabilitySlots->flatMap(function (AppointmentAvailabilitySlot $appointmentAvailabilitySlot) use ($appointmentConfiguration) {
-            $appointmentAvailabilitySlotStart = $appointmentAvailabilitySlot->getStart();
-
-            if (! $this->appointmentSlot->isBetween($appointmentAvailabilitySlotStart, $appointmentAvailabilitySlot->getEnd())) {
+            if (! $this->appointmentSlot->isBetween($appointmentAvailabilitySlot->getStart(), $appointmentAvailabilitySlot->getEnd())) {
                 return [$appointmentAvailabilitySlot];
             }
 
@@ -58,8 +57,10 @@ final class AvailabilitySlotManager
 
             return [
                 AvailabilitySlot::from(
-                    start: $appointmentAvailabilitySlotStart,
-                    end: $this->appointmentSlot->getStart()
+                    new Slot(
+                        start: $appointmentAvailabilitySlot->getStart(),
+                        end: $this->appointmentSlot->getStart()
+                    )
                 )->make(),
                 $appointmentAvailabilitySlot,
             ];

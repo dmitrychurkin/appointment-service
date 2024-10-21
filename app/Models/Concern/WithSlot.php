@@ -4,7 +4,7 @@ namespace App\Models\Concern;
 
 use Illuminate\Support\Carbon;
 
-trait Slot
+trait WithSlot
 {
     public function getStart(): Carbon
     {

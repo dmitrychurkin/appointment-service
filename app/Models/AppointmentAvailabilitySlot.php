@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Models\Builder\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotBuilder;
-use App\Models\Concern\Slot;
+use App\Models\Concern\WithSlot;
+use App\Models\Contract\Slot as SlotContract;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,9 +17,9 @@ use WendellAdriel\Lift\Attributes\Fillable;
 use WendellAdriel\Lift\Attributes\PrimaryKey;
 use WendellAdriel\Lift\Lift;
 
-class AppointmentAvailabilitySlot extends Model
+class AppointmentAvailabilitySlot extends Model implements SlotContract
 {
-    use HasFactory, HasUuids, Lift, Slot;
+    use HasFactory, HasUuids, Lift, WithSlot;
 
     #[PrimaryKey(type: 'string', incrementing: false)]
     public string $uuid;

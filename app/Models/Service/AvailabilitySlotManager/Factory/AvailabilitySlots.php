@@ -4,11 +4,12 @@ namespace App\Models\Service\AvailabilitySlotManager\Factory;
 
 use App\Models\ConfigurationAvailabilitySlot;
 use App\Models\Data\AppointmentSlot;
+use App\Models\Factory\DataFactory;
 use Illuminate\Support\Collection;
 
-final class AvailabilitySlots
+final class AvailabilitySlots extends DataFactory
 {
-    public static function from(AppointmentSlot $appointmentSlot): self
+    public static function fromAppointmentSlot(AppointmentSlot $appointmentSlot): self
     {
         return new self($appointmentSlot);
     }

@@ -3,26 +3,26 @@
 namespace App\Models\Service\AvailabilitySlotManager\Factory;
 
 use App\Models\AppointmentAvailabilitySlot;
-use Illuminate\Support\Carbon;
+use App\Models\Contract\Slot;
+use App\Models\Factory\DataFactory;
 
-final class AvailabilitySlot
+final class AvailabilitySlot extends DataFactory
 {
-    public static function from(Carbon $start, Carbon $end): self
+    public static function fromSlot(Slot $slot): self
     {
-        return new self($start, $end);
+        return new self($slot);
     }
 
     private function __construct(
-        private readonly Carbon $start,
-        private readonly Carbon $end,
+        private readonly Slot $slot,
     ) {}
 
     public function make(): AppointmentAvailabilitySlot
     {
         $appointmentAvailabilitySlot = new AppointmentAvailabilitySlot;
 
-        $appointmentAvailabilitySlot->start = $this->start;
-        $appointmentAvailabilitySlot->end = $this->end;
+        $appointmentAvailabilitySlot->start = $this->slot->getStart();
+        $appointmentAvailabilitySlot->end = $this->slot->getEnd();
 
         return $appointmentAvailabilitySlot;
     }

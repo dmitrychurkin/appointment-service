@@ -4,7 +4,7 @@ namespace Core\Features\Appointment\Models\AppointmentAvailabilitySlot\Attribute
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-trait isInvalid
+trait IsInvalid
 {
     public function isInvalid(): Attribute
     {

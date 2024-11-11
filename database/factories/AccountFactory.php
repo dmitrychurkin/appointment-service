@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Enum\AccountSlug;
+use Core\Features\Appointment\Enums\AccountSlug;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

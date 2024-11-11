@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Account;
-use App\Models\AppointmentConfiguration;
-use App\Models\ConfigurationAvailabilitySlot;
-use App\Models\Enum\AccountSlug;
-use App\Models\User;
+use Core\Features\Appointment\Enums\AccountSlug;
+use Core\Features\Appointment\Models\Account\Account;
+use Core\Features\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
+use Core\Features\Appointment\Models\ConfigurationAvailabilitySlot\ConfigurationAvailabilitySlot;
+use Core\Features\Common\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder

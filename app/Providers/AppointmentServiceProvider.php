@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Core\Features\Appointment\Contracts\AppointmentUseCase;
-use Core\Features\Appointment\Services\AppointmentService;
+use Core\Features\Appointment\UseCase\Contracts\InputPort\Appointment;
+use Core\Features\Appointment\UseCase\Interactor\AppointmentInteractor;
 use Illuminate\Support\ServiceProvider;
 
 final class AppointmentServiceProvider extends ServiceProvider
@@ -14,7 +14,7 @@ final class AppointmentServiceProvider extends ServiceProvider
      * @var array
      */
     public $singletons = [
-        AppointmentUseCase::class => AppointmentService::class,
+        Appointment::class => AppointmentInteractor::class,
     ];
 
     /**
@@ -40,6 +40,6 @@ final class AppointmentServiceProvider extends ServiceProvider
      */
     public function provides(): array
     {
-        return [AppointmentUseCase::class];
+        return [Appointment::class];
     }
 }

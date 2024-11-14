@@ -5,19 +5,19 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
-use Core\Features\Appointment\Contracts\AppointmentUseCase;
 use Core\Features\Appointment\Data\AppointmentSlotData;
 use Core\Features\Appointment\Models\Appointment\Appointment;
+use Core\Features\Appointment\UseCase\Contracts\InputPort\Appointment as AppointmentService;
 use Core\Features\Common\Models\User;
 use Illuminate\Container\Attributes\CurrentUser;
 
-class AppointmentController extends Controller
+final class AppointmentController extends Controller
 {
     /**
      * Create a new controller instance.
      */
     public function __construct(
-        private AppointmentUseCase $appointmentUseCase
+        private readonly AppointmentService $appointmentService
     ) {}
 
     /**
@@ -33,7 +33,7 @@ class AppointmentController extends Controller
      */
     public function store(StoreAppointmentRequest $request, #[CurrentUser] User $user)
     {
-        $this->appointmentUseCase->create(
+        $this->appointmentService->create(
             AppointmentSlotData::from($request->validated())
                 ->withAccount($user->account)
         );

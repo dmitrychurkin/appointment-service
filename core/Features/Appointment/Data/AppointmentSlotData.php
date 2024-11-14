@@ -4,13 +4,14 @@ namespace Core\Features\Appointment\Data;
 
 use Core\Features\Appointment\Models\Account\Account;
 use Core\Features\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
+use Core\Features\Appointment\UseCase\Contracts\Data\AppointmentSlot;
 use Illuminate\Database\Eloquent\Collection;
 
-class AppointmentSlotData extends SlotData
+final class AppointmentSlotData extends SlotData implements AppointmentSlot
 {
     private readonly Account $account;
 
-    public function __construct(
+    private function __construct(
         private readonly string $title,
         array ...$args
     ) {
@@ -22,6 +23,11 @@ class AppointmentSlotData extends SlotData
         $this->account = $account;
 
         return $this;
+    }
+
+    public function getAccount(): Account
+    {
+        return $this->account;
     }
 
     public function getAppointmentConfiguration(): AppointmentConfiguration

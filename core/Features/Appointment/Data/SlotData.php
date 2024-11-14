@@ -3,18 +3,24 @@
 namespace Core\Features\Appointment\Data;
 
 use Core\Features\Appointment\Concerns\WithSlot;
-use Core\Features\Appointment\Contracts\Slot as SlotContract;
+use Core\Features\Appointment\UseCase\Contracts\Data\Slot;
+use Core\Features\Appointment\UseCase\Contracts\Data\SlotMethods;
 use Core\Features\Common\Data\Data;
 use Illuminate\Support\Carbon;
 
-class SlotData extends Data implements SlotContract
+class SlotData extends Data implements Slot, SlotMethods
 {
     use WithSlot;
 
-    public function __construct(
+    protected function __construct(
         private readonly Carbon $start,
         private readonly Carbon $end,
     ) {}
+
+    public function newSlotData(Carbon $start, Carbon $end): self
+    {
+        return new self($start, $end);
+    }
 
     public function isBetween(Carbon $start, Carbon $end): bool
     {

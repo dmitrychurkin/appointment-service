@@ -38,7 +38,7 @@ final class CreateAppointmentCommand
     {
         return match ($appointmentAvailabilitySlot) {
             null => AppointmentAvailabilitySlotCollectionFactory::from($appointmentSlot)->make(),
-            default => collect([$appointmentAvailabilitySlot])
+            default => $appointmentAvailabilitySlot->toCollection(),
         };
     }
 

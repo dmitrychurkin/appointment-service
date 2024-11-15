@@ -4,6 +4,7 @@ namespace Core\Features\Appointment\Models\AppointmentAvailabilitySlot;
 
 use Core\Features\Appointment\Concerns\WithSlot;
 use Core\Features\Appointment\Contracts\AppointmentSlot;
+use Core\Features\Common\Concerns\Collectionable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ use Override;
 #[ObservedBy(AppointmentAvailabilitySlotObserver::class)]
 final class AppointmentAvailabilitySlot extends Model implements AppointmentSlot
 {
-    use AppointmentAvailabilitySlotAttributes, AppointmentAvailabilitySlotMutations, HasFactory, HasUuids, WithSlot;
+    use AppointmentAvailabilitySlotAttributes, AppointmentAvailabilitySlotMutations, Collectionable, HasFactory, HasUuids, WithSlot;
 
     /**
      * Indicates if the model's ID is auto-incrementing.

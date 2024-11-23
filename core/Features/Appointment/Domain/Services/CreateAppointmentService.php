@@ -1,35 +1,31 @@
 <?php
 
-namespace Core\Features\Appointment\UseCase\Commands;
+namespace Core\Features\Appointment\Domain\Services;
 
+use Core\Features\Appointment\Domain\Contracts\AppointmentAvailabilitySlotRepository;
+use Core\Features\Appointment\Domain\Contracts\AppointmentSlot;
 use Core\Features\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot;
 use Core\Features\Appointment\Models\AppointmentAvailabilitySlot\Factories\AppointmentAvailabilitySlotCollectionFactory;
 use Core\Features\Appointment\Models\AppointmentAvailabilitySlot\Factories\AppointmentAvailabilitySlotFactory;
-use Core\Features\Appointment\UseCase\Contracts\Data\AppointmentSlot;
 use Core\Features\Common\Data\NullableData;
-use Exception;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
-final class CreateAppointmentCommand
+final class CreateAppointmentService
 {
-    public function execute(AppointmentSlot $appointmentSlot)
+    public function __construct(
+        private readonly AppointmentAvailabilitySlotRepository $appointmentAvailabilitySlotRepository
+    ) {}
+
+    public function __invoke(AppointmentSlot $appointmentSlot)
     {
-        try {
-            DB::beginTransaction();
-            $appointmentAvailabilitySlot = AppointmentAvailabilitySlot::whereHasAvailabilitySlot($appointmentSlot)->first();
+        $appointmentAvailabilitySlot = $this->appointmentAvailabilitySlotRepository->getAvailabilitySlot($appointmentSlot);
 
-            $this->calculateAvailabilitySlots($appointmentSlot, $appointmentAvailabilitySlot)
-                ->each(
-                    fn (AppointmentAvailabilitySlot $appointmentAvailabilitySlot) => $appointmentAvailabilitySlot->save()
-                );
+        $this->calculateAvailabilitySlots($appointmentSlot, $appointmentAvailabilitySlot)
+            ->each(
+                fn (AppointmentAvailabilitySlot $appointmentAvailabilitySlot) => $appointmentAvailabilitySlot->save()
+            );
 
-            // $this->eventBus->publish(new CreateAppointment($appointmentSlot));
-            DB::commit();
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        // $this->eventBus->publish(new CreateAppointment($appointmentSlot));
 
         return NullableData::from();
     }

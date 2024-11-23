@@ -7,7 +7,7 @@ use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
 use Core\Features\Appointment\Data\AppointmentSlotData;
 use Core\Features\Appointment\Models\Appointment\Appointment;
-use Core\Features\Appointment\UseCase\Contracts\InputPort\Appointment as AppointmentService;
+use Core\Features\Appointment\UseCase\Contracts\Appointment as AppointmentService;
 use Core\Features\Common\Models\User;
 use Illuminate\Container\Attributes\CurrentUser;
 

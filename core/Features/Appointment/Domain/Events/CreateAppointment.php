@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Features\Appointment\Events;
+namespace Core\Features\Appointment\Domain\Events;
 
 final class CreateAppointment
 {

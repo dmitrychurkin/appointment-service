@@ -2,9 +2,9 @@
 
 namespace Core\Features\Appointment\Data;
 
+use Core\Features\Appointment\Domain\Contracts\AppointmentSlot;
 use Core\Features\Appointment\Models\Account\Account;
 use Core\Features\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
-use Core\Features\Appointment\UseCase\Contracts\Data\AppointmentSlot;
 use Illuminate\Database\Eloquent\Collection;
 
 final class AppointmentSlotData extends SlotData implements AppointmentSlot

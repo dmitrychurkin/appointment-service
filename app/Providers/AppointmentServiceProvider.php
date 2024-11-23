@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use Core\Features\Appointment\UseCase\Contracts\InputPort\Appointment;
+use Core\Features\Appointment\Domain\Contracts\AppointmentAvailabilitySlotRepository as AppointmentAvailabilitySlotRepositoryContract;
+use Core\Features\Appointment\Repositories\AppointmentAvailabilitySlotRepository;
+use Core\Features\Appointment\UseCase\Contracts\Appointment;
 use Core\Features\Appointment\UseCase\Interactor\AppointmentInteractor;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,6 +16,7 @@ final class AppointmentServiceProvider extends ServiceProvider
      * @var array
      */
     public $singletons = [
+        AppointmentAvailabilitySlotRepositoryContract::class => AppointmentAvailabilitySlotRepository::class,
         Appointment::class => AppointmentInteractor::class,
     ];
 
@@ -40,6 +43,9 @@ final class AppointmentServiceProvider extends ServiceProvider
      */
     public function provides(): array
     {
-        return [Appointment::class];
+        return [
+            Appointment::class,
+            AppointmentAvailabilitySlotRepositoryContract::class,
+        ];
     }
 }

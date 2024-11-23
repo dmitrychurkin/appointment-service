@@ -3,8 +3,8 @@
 namespace Core\Features\Appointment\Data;
 
 use Core\Features\Appointment\Concerns\WithSlot;
-use Core\Features\Appointment\UseCase\Contracts\Data\Slot;
-use Core\Features\Appointment\UseCase\Contracts\Data\SlotMethods;
+use Core\Features\Appointment\Domain\Contracts\Slot;
+use Core\Features\Appointment\Domain\Contracts\SlotMethods;
 use Core\Features\Common\Data\Data;
 use Illuminate\Support\Carbon;
 

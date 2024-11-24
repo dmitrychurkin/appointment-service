@@ -28,4 +28,18 @@ class SlotData extends Data implements Slot, SlotMethods
             $this->start->isBetween($start, $end) &&
             $this->end->isBetween($start, $end);
     }
+
+    public function setStartTimeFrom(Carbon $date): self
+    {
+        $this->start->setTimeFrom($date);
+
+        return $this;
+    }
+
+    public function setEndTimeFrom(Carbon $date): self
+    {
+        $this->end->setTimeFrom($date);
+
+        return $this;
+    }
 }

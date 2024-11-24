@@ -2,20 +2,20 @@
 
 namespace Core\Features\Appointment\Models\AppointmentAvailabilitySlot\Factories;
 
-use Core\Features\Appointment\Data\AppointmentSlotData;
+use Core\Features\Appointment\Domain\Contracts\AppointmentSlot;
 use Core\Features\Appointment\Models\ConfigurationAvailabilitySlot\ConfigurationAvailabilitySlot;
 use Core\Features\Common\Factories\DataFactory;
 use Illuminate\Support\Collection;
 
 final class AppointmentAvailabilitySlotCollectionFactory extends DataFactory
 {
-    public static function fromAppointmentSlot(AppointmentSlotData $appointmentSlot): self
+    public static function fromAppointmentSlot(AppointmentSlot $appointmentSlot): self
     {
         return new self($appointmentSlot);
     }
 
     private function __construct(
-        private readonly AppointmentSlotData $appointmentSlot
+        private readonly AppointmentSlot $appointmentSlot
     ) {}
 
     public function make(): Collection
@@ -26,8 +26,8 @@ final class AppointmentAvailabilitySlotCollectionFactory extends DataFactory
             ->getConfigurationAvailabilitySlots()
             ->map(
                 fn (ConfigurationAvailabilitySlot $configurationAvailabilitySlot) => AppointmentAvailabilitySlotFactory::from(
-                    start: $appointmentSlot->getStart()->setTimeFrom($configurationAvailabilitySlot->startTime),
-                    end: $appointmentSlot->getEnd()->setTimeFrom($configurationAvailabilitySlot->endTime)
+                    start: $appointmentSlot->setStartTimeFrom($configurationAvailabilitySlot->startTime),
+                    end: $appointmentSlot->setEndTimeFrom($configurationAvailabilitySlot->endTime)
                 )->make()
             );
     }

@@ -2,7 +2,7 @@
 
 namespace Core\Features\Appointment\Data;
 
-use Core\Features\Appointment\Domain\Contracts\AppointmentSlot;
+use Core\Features\Appointment\Contracts\AppointmentSlot;
 use Core\Features\Appointment\Models\Account\Account;
 use Core\Features\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
 use Illuminate\Database\Eloquent\Collection;

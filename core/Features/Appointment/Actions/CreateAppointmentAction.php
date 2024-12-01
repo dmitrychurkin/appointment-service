@@ -1,16 +1,16 @@
 <?php
 
-namespace Core\Features\Appointment\Domain\Services;
+namespace Core\Features\Appointment\Actions;
 
-use Core\Features\Appointment\Domain\Contracts\AppointmentAvailabilitySlotRepository;
-use Core\Features\Appointment\Domain\Contracts\AppointmentSlot;
+use Core\Features\Appointment\Contracts\AppointmentSlot;
+use Core\Features\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotRepository;
+use Core\Features\Appointment\Factories\AppointmentAvailabilitySlotCollectionFactory;
+use Core\Features\Appointment\Factories\AppointmentAvailabilitySlotFactory;
 use Core\Features\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot;
-use Core\Features\Appointment\Models\AppointmentAvailabilitySlot\Factories\AppointmentAvailabilitySlotCollectionFactory;
-use Core\Features\Appointment\Models\AppointmentAvailabilitySlot\Factories\AppointmentAvailabilitySlotFactory;
 use Core\Features\Common\Data\NullableData;
 use Illuminate\Support\Collection;
 
-final class CreateAppointmentService
+final class CreateAppointmentAction
 {
     public function __construct(
         private readonly AppointmentAvailabilitySlotRepository $appointmentAvailabilitySlotRepository

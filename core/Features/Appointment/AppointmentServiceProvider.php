@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace Core\Features\Appointment;
 
-use Core\Features\Appointment\Domain\Contracts\AppointmentAvailabilitySlotRepository as AppointmentAvailabilitySlotRepositoryContract;
+use Core\Features\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot;
+use Core\Features\Appointment\Contracts\Services\Appointment;
 use Core\Features\Appointment\Repositories\AppointmentAvailabilitySlotRepository;
-use Core\Features\Appointment\UseCase\Contracts\Appointment;
-use Core\Features\Appointment\UseCase\Interactor\AppointmentInteractor;
+use Core\Features\Appointment\Services\AppointmentService;
 use Illuminate\Support\ServiceProvider;
 
 final class AppointmentServiceProvider extends ServiceProvider
@@ -16,8 +16,8 @@ final class AppointmentServiceProvider extends ServiceProvider
      * @var array
      */
     public $singletons = [
-        AppointmentAvailabilitySlotRepositoryContract::class => AppointmentAvailabilitySlotRepository::class,
-        Appointment::class => AppointmentInteractor::class,
+        AppointmentAvailabilitySlot::class => AppointmentAvailabilitySlotRepository::class,
+        Appointment::class => AppointmentService::class,
     ];
 
     /**
@@ -45,7 +45,7 @@ final class AppointmentServiceProvider extends ServiceProvider
     {
         return [
             Appointment::class,
-            AppointmentAvailabilitySlotRepositoryContract::class,
+            AppointmentAvailabilitySlot::class,
         ];
     }
 }

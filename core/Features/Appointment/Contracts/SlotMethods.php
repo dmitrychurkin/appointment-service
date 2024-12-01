@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Features\Appointment\Domain\Contracts;
+namespace Core\Features\Appointment\Contracts;
 
 use Illuminate\Support\Carbon;
 

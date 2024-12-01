@@ -3,7 +3,7 @@
 namespace Core\Features\Appointment\Models\AppointmentAvailabilitySlot;
 
 use Core\Features\Appointment\Concerns\WithSlot;
-use Core\Features\Appointment\Domain\Contracts\Slot;
+use Core\Features\Appointment\Contracts\Slot;
 use Core\Features\Common\Concerns\Collectionable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;

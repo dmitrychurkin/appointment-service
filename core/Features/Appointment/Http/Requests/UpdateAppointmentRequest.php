@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Core\Features\Appointment\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Core\Features\Common\Http\Requests\FormRequest;
 
 final class UpdateAppointmentRequest extends FormRequest
 {

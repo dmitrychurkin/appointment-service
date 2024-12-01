@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Features\Appointment\Models\AppointmentAvailabilitySlot\Factories;
+namespace Core\Features\Appointment\Factories;
 
-use Core\Features\Appointment\Domain\Contracts\AppointmentSlot;
+use Core\Features\Appointment\Contracts\AppointmentSlot;
 use Core\Features\Appointment\Models\ConfigurationAvailabilitySlot\ConfigurationAvailabilitySlot;
 use Core\Features\Common\Factories\DataFactory;
 use Illuminate\Support\Collection;

@@ -3,10 +3,10 @@
 namespace Core\Features\Appointment\Models\ConfigurationAvailabilitySlot;
 
 use Core\Features\Appointment\Models\ConfigurationAvailabilitySlot\Scopes\ConfigurationAvailabilitySlotOrderScope;
+use Core\Features\Common\Models\Model;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 #[ScopedBy([ConfigurationAvailabilitySlotOrderScope::class])]
 class ConfigurationAvailabilitySlot extends Model

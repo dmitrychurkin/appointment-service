@@ -6,7 +6,7 @@ use Core\Features\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot
 use Core\Features\Appointment\Contracts\Services\Appointment;
 use Core\Features\Appointment\Repositories\AppointmentAvailabilitySlotRepository;
 use Core\Features\Appointment\Services\AppointmentService;
-use Illuminate\Support\ServiceProvider;
+use Core\Features\Common\Providers\ServiceProvider;
 
 final class AppointmentServiceProvider extends ServiceProvider
 {

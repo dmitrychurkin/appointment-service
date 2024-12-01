@@ -2,9 +2,9 @@
 
 namespace Core\Features\Appointment\Models\Appointment;
 
+use Core\Features\Common\Models\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class Appointment extends Model

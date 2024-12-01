@@ -2,9 +2,9 @@
 
 namespace Core\Features\Appointment\Models\AppointmentConfiguration;
 
+use Core\Features\Common\Models\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Override;
 
 final class AppointmentConfiguration extends Model

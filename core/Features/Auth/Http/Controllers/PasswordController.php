@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Features\Auth\Http\Controllers\Auth;
+namespace Core\Features\Auth\Http\Controllers;
 
 use Core\Features\Common\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
-class PasswordController extends Controller
+final class PasswordController extends Controller
 {
     /**
      * Update the user's password.

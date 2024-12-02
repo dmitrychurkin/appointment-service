@@ -1,15 +1,15 @@
 <?php
 
-namespace Core\Features\Auth\Http\Controllers\Auth;
+namespace Core\Features\Auth\Http\Controllers;
 
-use App\Http\Requests\Auth\LoginRequest;
+use Core\Features\Auth\Http\Requests\LoginRequest;
 use Core\Features\Common\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class AuthenticatedSessionController extends Controller
+final class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
@@ -28,7 +28,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return $request->wantsJson()
+            ? response()->noContent()
+            : redirect()->intended();
     }
 
     /**
@@ -42,6 +44,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return $request->wantsJson()
+            ? response()->noContent()
+            : redirect('/');
     }
 }

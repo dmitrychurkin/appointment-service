@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Features\Auth\Http\Controllers\Auth;
+namespace Core\Features\Auth\Http\Controllers;
 
 use Core\Features\Common\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class ConfirmablePasswordController extends Controller
+final class ConfirmablePasswordController extends Controller
 {
     /**
      * Show the confirm password view.

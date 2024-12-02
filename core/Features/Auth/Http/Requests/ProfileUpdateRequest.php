@@ -6,7 +6,7 @@ use Core\Features\Common\Http\Requests\FormRequest;
 use Core\Features\Common\Models\User;
 use Illuminate\Validation\Rule;
 
-class ProfileUpdateRequest extends FormRequest
+final class ProfileUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

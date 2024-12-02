@@ -10,7 +10,9 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('v1')->group(function () {
-    Route::apiResource('appointments', AppointmentController::class);
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::apiResource('appointments', AppointmentController::class);
+    });
 });
 
 Route::middleware('guest')->post('/login', [AuthenticatedSessionController::class, 'store']);

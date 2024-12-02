@@ -6,16 +6,18 @@ use Core\Features\Appointment\Contracts\AppointmentSlot;
 use Core\Features\Appointment\Models\Account\Account;
 use Core\Features\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Carbon;
 
 final class AppointmentSlotData extends SlotData implements AppointmentSlot
 {
     private readonly Account $account;
 
-    private function __construct(
-        private readonly string $title,
-        array ...$args
+    public function __construct(
+        public Carbon $start,
+        public Carbon $end,
+        public readonly string $title,
     ) {
-        parent::__construct(...$args);
+        parent::__construct($start, $end);
     }
 
     public function withAccount(Account $account): static

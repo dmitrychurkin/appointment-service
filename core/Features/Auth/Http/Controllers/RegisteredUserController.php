@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Features\Auth\Http\Controllers\Auth;
+namespace Core\Features\Auth\Http\Controllers;
 
 use Core\Features\Common\Http\Controllers\Controller;
 use Core\Features\Common\Models\User;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
-class RegisteredUserController extends Controller
+final class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.

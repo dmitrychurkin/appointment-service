@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Features\Auth\Http\Controllers\Auth;
+namespace Core\Features\Auth\Http\Controllers;
 
 use Core\Features\Common\Http\Controllers\Controller;
 use Illuminate\Auth\Events\PasswordReset;
@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
-class NewPasswordController extends Controller
+final class NewPasswordController extends Controller
 {
     /**
      * Display the password reset view.

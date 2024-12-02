@@ -12,9 +12,9 @@ class SlotData extends Data implements Slot, SlotMethods
 {
     use WithSlot;
 
-    protected function __construct(
-        private readonly Carbon $start,
-        private readonly Carbon $end,
+    public function __construct(
+        public Carbon $start,
+        public Carbon $end,
     ) {}
 
     public function newSlotData(Carbon $start, Carbon $end): self

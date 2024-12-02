@@ -24,6 +24,7 @@ final class StoreAppointmentRequest extends FormRequest
         return [
             'start' => ['required', 'date'],
             'end' => ['required', 'date'],
+            'title' => ['required', 'string'],
         ];
     }
 }

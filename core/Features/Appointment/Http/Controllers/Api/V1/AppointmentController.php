@@ -2,14 +2,14 @@
 
 namespace Core\Features\Appointment\Http\Controllers\Api\V1;
 
+use Core\Features\Appointment\Attributes\CurrentUser;
 use Core\Features\Appointment\Contracts\Services\Appointment as AppointmentService;
 use Core\Features\Appointment\Data\AppointmentSlotData;
 use Core\Features\Appointment\Http\Requests\StoreAppointmentRequest;
 use Core\Features\Appointment\Http\Requests\UpdateAppointmentRequest;
 use Core\Features\Appointment\Models\Appointment\Appointment;
+use Core\Features\Appointment\Models\User\User;
 use Core\Features\Common\Http\Controllers\Controller;
-use Core\Features\Common\Models\User;
-use Illuminate\Container\Attributes\CurrentUser;
 
 final class AppointmentController extends Controller
 {

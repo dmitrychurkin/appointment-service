@@ -10,6 +10,15 @@ use Illuminate\Support\Carbon;
 
 final class AppointmentSlotData extends SlotData implements AppointmentSlot
 {
+    public static function rules(): array
+    {
+        return [
+            'start' => ['required', 'date'],
+            'end' => ['required', 'date'],
+            'title' => ['required', 'string'],
+        ];
+    }
+
     private readonly Account $account;
 
     public function __construct(

@@ -15,12 +15,6 @@ final class CurrentUser implements ContextualAttribute
      */
     public static function resolve(self $attribute, Container $container): User
     {
-        $authenticated = auth()->user();
-
-        $user = (new User)->setRawAttributes($authenticated->getAttributes(), true);
-
-        $user->exists = $authenticated->exists;
-
-        return $user;
+        return auth()->user()->castTo(User::class);
     }
 }

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot;
 
 use AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot\Scopes\ConfigurationAvailabilitySlotOrderScope;
+use AppointmentService\Common\Concerns\HasFactory;
+use AppointmentService\Common\Concerns\HasUuids;
 use AppointmentService\Common\Models\Model;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 #[ScopedBy([ConfigurationAvailabilitySlotOrderScope::class])]
 class ConfigurationAvailabilitySlot extends Model

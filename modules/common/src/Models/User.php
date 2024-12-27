@@ -7,7 +7,7 @@ namespace AppointmentService\Common\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use AppointmentService\Common\Concerns\Castable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use AppointmentService\Common\Concerns\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 

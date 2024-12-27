@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Models\AppointmentConfiguration;
 
+use AppointmentService\Common\Concerns\HasFactory;
+use AppointmentService\Common\Concerns\HasUuids;
 use AppointmentService\Common\Models\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Override;
 
 final class AppointmentConfiguration extends Model

@@ -7,10 +7,10 @@ namespace AppointmentService\Appointment\Models\AppointmentAvailabilitySlot;
 use AppointmentService\Appointment\Concerns\WithSlot;
 use AppointmentService\Appointment\Contracts\Slot;
 use AppointmentService\Common\Concerns\Collectionable;
+use AppointmentService\Common\Concerns\HasFactory;
+use AppointmentService\Common\Concerns\HasUuids;
 use AppointmentService\Common\Models\Model;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Override;
 
 #[ObservedBy(AppointmentAvailabilitySlotObserver::class)]

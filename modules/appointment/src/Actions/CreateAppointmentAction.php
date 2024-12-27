@@ -6,10 +6,10 @@ namespace AppointmentService\Appointment\Actions;
 
 use AppointmentService\Appointment\Contracts\AppointmentSlot;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotRepository;
+use AppointmentService\Appointment\Events\AvailabilitySlotsCreated;
 use AppointmentService\Appointment\Factories\AppointmentAvailabilitySlotCollectionFactory;
 use AppointmentService\Appointment\Factories\AppointmentAvailabilitySlotFactory;
 use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot;
-use AppointmentService\Common\Data\NullableData;
 use Illuminate\Support\Collection;
 
 final class CreateAppointmentAction
@@ -27,24 +27,14 @@ final class CreateAppointmentAction
                 fn (AppointmentAvailabilitySlot $appointmentAvailabilitySlot) => $appointmentAvailabilitySlot->save()
             );
 
-        // $this->eventBus->publish(new CreateAppointment($appointmentSlot));
-
-        return NullableData::from();
-    }
-
-    private function withAppointmentAvailabilitySlot(AppointmentSlot $appointmentSlot, ?AppointmentAvailabilitySlot $appointmentAvailabilitySlot): Collection
-    {
-        return match ($appointmentAvailabilitySlot) {
-            null => AppointmentAvailabilitySlotCollectionFactory::from($appointmentSlot)->make(),
-            default => $appointmentAvailabilitySlot->toCollection(),
-        };
+        AvailabilitySlotsCreated::dispatch($appointmentSlot);
     }
 
     private function calculateAvailabilitySlots(AppointmentSlot $appointmentSlot, ?AppointmentAvailabilitySlot $appointmentAvailabilitySlot = null): Collection
     {
         $appointmentConfiguration = $appointmentSlot->getAppointmentConfiguration();
 
-        return $this->withAppointmentAvailabilitySlot($appointmentSlot, $appointmentAvailabilitySlot)
+        return $this->fromAppointmentAvailabilitySlots($appointmentSlot, $appointmentAvailabilitySlot)
             ->reduce(function (
                 Collection $appointmentAvailabilitySlots,
                 AppointmentAvailabilitySlot $appointmentAvailabilitySlot
@@ -70,5 +60,13 @@ final class CreateAppointmentAction
                     )->make(),
                 );
             }, collect());
+    }
+
+    private function fromAppointmentAvailabilitySlots(AppointmentSlot $appointmentSlot, ?AppointmentAvailabilitySlot $appointmentAvailabilitySlot): Collection
+    {
+        return match ($appointmentAvailabilitySlot) {
+            null => AppointmentAvailabilitySlotCollectionFactory::from($appointmentSlot)->make(),
+            default => $appointmentAvailabilitySlot->toCollection(),
+        };
     }
 }

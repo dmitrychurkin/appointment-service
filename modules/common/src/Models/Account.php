@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AppointmentService\Common\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use AppointmentService\Common\Concerns\HasFactory;
+use AppointmentService\Common\Concerns\HasUuids;
+use AppointmentService\Common\Concerns\SoftDeletes;
 
 abstract class Account extends Model
 {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Models\AppointmentAvailabilitySlot;
 
-use Illuminate\Database\Eloquent\Builder;
+use AppointmentService\Common\Builders\QueryBuilder;
 
-final class AppointmentAvailabilitySlotBuilder extends Builder
+final class AppointmentAvailabilitySlotBuilder extends QueryBuilder
 {
     use AppointmentAvailabilitySlotQueries;
 }

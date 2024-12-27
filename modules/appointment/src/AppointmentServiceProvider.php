@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment;
 
+use AppointmentService\Appointment\Contracts\Repositories\Appointment as AppointmentRepositoryContract;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot;
 use AppointmentService\Appointment\Contracts\Services\Appointment;
+use AppointmentService\Appointment\Listeners\AppointmentEventSubscriber;
 use AppointmentService\Appointment\Repositories\AppointmentAvailabilitySlotRepository;
+use AppointmentService\Appointment\Repositories\AppointmentRepository;
 use AppointmentService\Appointment\Services\AppointmentService;
+use AppointmentService\Common\Facades\Event;
 use AppointmentService\Common\Providers\ServiceProvider;
 
 final class AppointmentServiceProvider extends ServiceProvider
@@ -18,6 +22,7 @@ final class AppointmentServiceProvider extends ServiceProvider
      * @var array
      */
     public $singletons = [
+        AppointmentRepositoryContract::class => AppointmentRepository::class,
         AppointmentAvailabilitySlot::class => AppointmentAvailabilitySlotRepository::class,
         Appointment::class => AppointmentService::class,
     ];
@@ -47,6 +52,8 @@ final class AppointmentServiceProvider extends ServiceProvider
         $this->publishesMigrations([
             __DIR__.'/../database/migrations' => database_path('migrations'),
         ], 'appointment-migrations');
+
+        $this->registerSubscribers();
     }
 
     /**
@@ -58,7 +65,13 @@ final class AppointmentServiceProvider extends ServiceProvider
     {
         return [
             Appointment::class,
+            AppointmentRepositoryContract::class,
             AppointmentAvailabilitySlot::class,
         ];
+    }
+
+    private function registerSubscribers(): void
+    {
+        Event::subscribe(AppointmentEventSubscriber::class);
     }
 }

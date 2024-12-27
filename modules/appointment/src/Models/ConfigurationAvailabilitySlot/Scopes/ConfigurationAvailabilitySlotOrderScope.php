@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot\Scopes;
 
+use AppointmentService\Common\Contracts\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Scope;
 
 final class ConfigurationAvailabilitySlotOrderScope implements Scope
 {

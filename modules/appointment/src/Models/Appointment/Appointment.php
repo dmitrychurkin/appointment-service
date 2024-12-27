@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Models\Appointment;
 
+use AppointmentService\Common\Concerns\HasFactory;
+use AppointmentService\Common\Concerns\HasUuids;
+use AppointmentService\Common\Concerns\SoftDeletes;
 use AppointmentService\Common\Models\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 final class Appointment extends Model
 {

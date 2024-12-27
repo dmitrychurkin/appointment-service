@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use Core\Features\Appointment\Enums\AccountSlug;
-use Core\Features\Appointment\Models\Account\Account;
-use Core\Features\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
-use Core\Features\Appointment\Models\ConfigurationAvailabilitySlot\ConfigurationAvailabilitySlot;
-use Core\Features\Common\Models\User;
+use AppointmentService\Appointment\Enums\AccountSlug;
+use AppointmentService\Appointment\Models\Account\Account;
+use AppointmentService\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
+use AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot\ConfigurationAvailabilitySlot;
+use AppointmentService\Appointment\Models\User\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder

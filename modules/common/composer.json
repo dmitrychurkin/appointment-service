@@ -1,0 +1,38 @@
+{
+    "name": "appointment-service/common",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AppointmentService\\Common\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dmitry Churkin",
+            "email": "dmitrychurkin1988@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/contracts": "^11.35",
+        "illuminate/database": "^11.35",
+        "illuminate/notifications": "^11.35",
+        "illuminate/support": "^11.35",
+        "illuminate/view": "^11.35",
+        "spatie/laravel-data": "^4.11"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AppointmentService\\Common\\Providers\\CommonServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

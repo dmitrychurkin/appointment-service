@@ -1,7 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     App\Providers\AppServiceProvider::class,
-    Core\Features\Appointment\AppointmentServiceProvider::class,
-    Core\Features\Auth\AuthServiceProvider::class,
 ];

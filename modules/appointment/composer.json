@@ -1,0 +1,39 @@
+{
+    "name": "appointment-service/appointment",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AppointmentService\\Appointment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dmitry Churkin",
+            "email": "dmitrychurkin1988@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "appointment-service/common": "dev-main"
+    },
+    "repositories": {
+        "common": {
+            "type": "path",
+            "url": "../common"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AppointmentService\\Appointment\\AppointmentServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

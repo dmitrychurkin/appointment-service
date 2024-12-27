@@ -1,6 +1,8 @@
 <?php
 
-use Core\Features\Common\Models\User;
+declare(strict_types=1);
+
+use AppointmentService\Common\Models\User;
 
 return [
 

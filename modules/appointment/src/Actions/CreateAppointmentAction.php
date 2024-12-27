@@ -35,15 +35,9 @@ final class CreateAppointmentAction
         $appointmentConfiguration = $appointmentSlot->getAppointmentConfiguration();
 
         return $this->fromAppointmentAvailabilitySlots($appointmentSlot, $appointmentAvailabilitySlot)
-            ->reduce(function (
-                Collection $appointmentAvailabilitySlots,
-                AppointmentAvailabilitySlot $appointmentAvailabilitySlot
-            ) use ($appointmentSlot, $appointmentConfiguration) {
-                if (! $appointmentSlot->isBetween($appointmentAvailabilitySlot->getStart(), $appointmentAvailabilitySlot->getEnd())) {
-                    return $appointmentAvailabilitySlots->push($appointmentAvailabilitySlot);
-                }
-
-                return $appointmentAvailabilitySlots->push(
+            ->reduce(fn (Collection $appointmentAvailabilitySlots, AppointmentAvailabilitySlot $appointmentAvailabilitySlot) => (
+                $appointmentSlot->isBetween($appointmentAvailabilitySlot->getStart(), $appointmentAvailabilitySlot->getEnd())
+                ? $appointmentAvailabilitySlots->push(
                     AppointmentAvailabilitySlotFactory::from(
                         $appointmentSlot->newSlotData(
                             start: $appointmentAvailabilitySlot->getStart(),
@@ -58,8 +52,9 @@ final class CreateAppointmentAction
                             end: $appointmentAvailabilitySlot->getEnd()
                         )
                     )->make(),
-                );
-            }, collect());
+                )
+                : $appointmentAvailabilitySlots->push($appointmentAvailabilitySlot)
+            ), collect());
     }
 
     private function fromAppointmentAvailabilitySlots(AppointmentSlot $appointmentSlot, ?AppointmentAvailabilitySlot $appointmentAvailabilitySlot): Collection

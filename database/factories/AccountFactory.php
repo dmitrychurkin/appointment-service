@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
-use Core\Features\Appointment\Enums\AccountSlug;
+use AppointmentService\Appointment\Enums\AccountSlug;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

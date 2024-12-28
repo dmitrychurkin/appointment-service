@@ -70,8 +70,10 @@ final class AppointmentServiceProvider extends ServiceProvider
         ];
     }
 
-    private function registerSubscribers(): void
+    private function registerSubscribers(): self
     {
         Event::subscribe(AppointmentEventSubscriber::class);
+
+        return $this;
     }
 }

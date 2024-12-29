@@ -47,6 +47,8 @@ final class AppointmentServiceProvider extends ServiceProvider
             __DIR__.'/../config/appointment.php' => config_path('appointment.php'),
         ], 'appointment-config');
 
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'appointment');
+
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
 
         $this->publishesMigrations([

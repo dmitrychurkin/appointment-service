@@ -17,9 +17,9 @@ final class AppointmentAvailabilitySlotPresence implements ValidationRule
     {
         if (
             ! $value &&
-            resolve(AppointmentAvailabilitySlotRepository::class)->exists(request()->input('start'))
+            resolve(AppointmentAvailabilitySlotRepository::class)->exists(request('start'))
         ) {
-            $fail('The appointment availability slot does not exist.');
+            $fail('appointment::validation.appointment_slot_not_available')->translate();
         }
     }
 }

@@ -9,23 +9,17 @@ final class AppointmentAvailabilitySlotObserver
     /**
      * Handle the AppointmentAvailabilitySlot "saving" event.
      */
-    public function saving(AppointmentAvailabilitySlot $appointmentAvailabilitySlot): void
+    public function saving(AppointmentAvailabilitySlot $appointmentAvailabilitySlot): bool
     {
-        $appointmentAvailabilitySlot->syncDuration();
+        return ! $appointmentAvailabilitySlot
+            ->syncDuration()
+            ->isInvalid;
     }
 
     /**
-     * Handle the AppointmentAvailabilitySlot "created" event.
+     * Handle the AppointmentAvailabilitySlot "created / updated" event.
      */
-    public function created(AppointmentAvailabilitySlot $appointmentAvailabilitySlot): void
-    {
-        $appointmentAvailabilitySlot->deleteInvalid();
-    }
-
-    /**
-     * Handle the AppointmentAvailabilitySlot "updated" event.
-     */
-    public function updated(AppointmentAvailabilitySlot $appointmentAvailabilitySlot): void
+    public function saved(AppointmentAvailabilitySlot $appointmentAvailabilitySlot): void
     {
         $appointmentAvailabilitySlot->deleteInvalid();
     }

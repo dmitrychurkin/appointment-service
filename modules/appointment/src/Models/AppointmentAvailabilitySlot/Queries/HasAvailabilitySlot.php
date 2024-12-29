@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\Queries;
 
-use AppointmentService\Appointment\Data\AppointmentSlotData;
+use AppointmentService\Appointment\Contracts\Slot;
 
 trait HasAvailabilitySlot
 {
@@ -14,12 +14,9 @@ trait HasAvailabilitySlot
      * @param  int  $id
      * @return bool
      */
-    public function whereHasAvailabilitySlot(AppointmentSlotData $appointmentSlot): self
+    public function whereHasAvailabilitySlot(Slot $appointmentSlot): self
     {
-        $start = $appointmentSlot->getStart();
-        $end = $appointmentSlot->getEnd();
-
-        return $this->whereBetween('from', [$start, $end])
-            ->whereBetween('to', [$start, $end]);
+        return $this->where('start', '<=', $appointmentSlot->getStart())
+            ->where('end', '>=', $appointmentSlot->getEnd());
     }
 }

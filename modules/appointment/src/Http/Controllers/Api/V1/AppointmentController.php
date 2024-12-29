@@ -7,6 +7,7 @@ namespace AppointmentService\Appointment\Http\Controllers\Api\V1;
 use AppointmentService\Appointment\Attributes\CurrentUser;
 use AppointmentService\Appointment\Contracts\Services\Appointment as AppointmentService;
 use AppointmentService\Appointment\Data\AppointmentSlotData;
+use AppointmentService\Appointment\Http\Requests\StoreAppointmentRequest;
 use AppointmentService\Appointment\Http\Requests\UpdateAppointmentRequest;
 use AppointmentService\Appointment\Models\Appointment\Appointment;
 use AppointmentService\Appointment\Models\User\User;
@@ -32,10 +33,10 @@ final class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AppointmentSlotData $appointmentSlotData, #[CurrentUser] User $user)
+    public function store(StoreAppointmentRequest $request, #[CurrentUser] User $user)
     {
         return $this->appointmentService->create(
-            $appointmentSlotData
+            $request->from(AppointmentSlotData::class)
                 ->withAccount($user->account)
         );
     }

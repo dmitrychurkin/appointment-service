@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Contracts;
 
-use AppointmentService\Appointment\Models\Account\Account;
+use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot;
 use AppointmentService\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
 use AppointmentService\Common\Contracts\TransformableData;
-use Illuminate\Database\Eloquent\Collection;
 
-interface AppointmentSlot extends Slot, SlotMethods, TransformableData
+interface AppointmentSlot extends Slot, SlotConfiguration, SlotMethods, TransformableData
 {
-    public function getAccount(): Account;
+    public function getAppointmentAvailabilitySlot(): ?AppointmentAvailabilitySlot;
 
     public function getAppointmentConfiguration(): AppointmentConfiguration;
-
-    public function getConfigurationAvailabilitySlots(): Collection;
 }

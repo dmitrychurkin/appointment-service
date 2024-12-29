@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Repositories;
 
-use AppointmentService\Appointment\Contracts\AppointmentSlot;
 use AppointmentService\Appointment\Contracts\Repositories\Appointment;
 use AppointmentService\Appointment\Models\Appointment\Appointment as AppointmentModel;
+use AppointmentService\Common\Contracts\TransformableData;
 
 final class AppointmentRepository implements Appointment
 {
-    public function createAppointment(AppointmentSlot $appointmentSlot): void
+    public function createAppointment(TransformableData $appointmentSlot): void
     {
-        AppointmentModel::create($appointmentSlot->toArray());
+        ['start' => $start, 'end' => $end, 'title' => $title] = $appointmentSlot->toArray();
+
+        AppointmentModel::create([
+            'start' => $start,
+            'end' => $end,
+            'title' => $title,
+        ]);
     }
 }

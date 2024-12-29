@@ -7,8 +7,7 @@ namespace AppointmentService\Appointment\Services;
 use AppointmentService\Appointment\Actions\CreateAppointmentAction;
 use AppointmentService\Appointment\Contracts\AppointmentSlot;
 use AppointmentService\Appointment\Contracts\Services\Appointment;
-use Exception;
-use Illuminate\Support\Facades\DB;
+use AppointmentService\Common\Facades\DB;
 
 final class AppointmentService implements Appointment
 {
@@ -20,15 +19,6 @@ final class AppointmentService implements Appointment
     {
         $execute = $this->createAppointmentAction;
 
-        try {
-            DB::beginTransaction();
-
-            $execute($appointmentSlot);
-
-            DB::commit();
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        DB::transaction(fn () => $execute($appointmentSlot));
     }
 }

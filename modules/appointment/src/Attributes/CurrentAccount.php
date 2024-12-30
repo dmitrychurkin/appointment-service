@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Attributes;
 
-use AppointmentService\Appointment\Models\User\User;
+use AppointmentService\Appointment\Models\Account\Account;
 use AppointmentService\Common\Contracts\ContextualAttribute;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_PARAMETER | Attribute::TARGET_PROPERTY)]
-final class CurrentUser implements ContextualAttribute
+final class CurrentAccount implements ContextualAttribute
 {
     /**
      * Resolve the configuration value.
      */
-    public static function resolve(): User
+    public static function resolve(): Account
     {
-        return auth()->user()->castTo(User::class);
+        return CurrentUser::resolve()->account;
     }
 }

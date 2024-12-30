@@ -6,9 +6,11 @@ namespace AppointmentService\Appointment;
 
 use AppointmentService\Appointment\Contracts\Repositories\Appointment as AppointmentRepositoryContract;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot;
+use AppointmentService\Appointment\Contracts\Repositories\AppointmentConfiguration;
 use AppointmentService\Appointment\Contracts\Services\Appointment;
 use AppointmentService\Appointment\Listeners\AppointmentEventSubscriber;
 use AppointmentService\Appointment\Repositories\AppointmentAvailabilitySlotRepository;
+use AppointmentService\Appointment\Repositories\AppointmentConfigurationRepository;
 use AppointmentService\Appointment\Repositories\AppointmentRepository;
 use AppointmentService\Appointment\Services\AppointmentService;
 use AppointmentService\Common\Facades\Event;
@@ -22,6 +24,7 @@ final class AppointmentServiceProvider extends ServiceProvider
      * @var array
      */
     public $singletons = [
+        AppointmentConfiguration::class => AppointmentConfigurationRepository::class,
         AppointmentRepositoryContract::class => AppointmentRepository::class,
         AppointmentAvailabilitySlot::class => AppointmentAvailabilitySlotRepository::class,
         Appointment::class => AppointmentService::class,
@@ -69,6 +72,7 @@ final class AppointmentServiceProvider extends ServiceProvider
             Appointment::class,
             AppointmentRepositoryContract::class,
             AppointmentAvailabilitySlot::class,
+            AppointmentConfiguration::class,
         ];
     }
 

@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace AppointmentService\Appointment\Http\Requests;
 
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotRepository;
+use AppointmentService\Appointment\Contracts\Repositories\AppointmentConfiguration as AppointmentConfigurationRepository;
 use AppointmentService\Appointment\Data\SlotData;
 use AppointmentService\Appointment\Rules\AppointmentAvailabilitySlotPresence;
+use AppointmentService\Appointment\Rules\RestrictOutOfConfigurationAvailabilitySlot;
 use AppointmentService\Common\Http\Requests\FormRequest;
 use Override;
 
 final class StoreAppointmentRequest extends FormRequest
 {
     public function __construct(
-        private readonly AppointmentAvailabilitySlotRepository $appointmentAvailabilitySlotRepository
+        private readonly AppointmentAvailabilitySlotRepository $appointmentAvailabilitySlotRepository,
+        private readonly AppointmentConfigurationRepository $appointmentConfigurationRepository
     ) {}
 
     /**
@@ -32,10 +35,11 @@ final class StoreAppointmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start' => ['required', 'date'],
-            'end' => ['required', 'date'],
+            'start' => ['required', 'date', 'after:now'],
+            'end' => ['required', 'date', 'after:start'],
             'title' => ['required', 'string'],
             'appointmentAvailabilitySlot' => [new AppointmentAvailabilitySlotPresence],
+            'appointmentConfiguration' => ['required', new RestrictOutOfConfigurationAvailabilitySlot],
         ];
     }
 
@@ -48,6 +52,9 @@ final class StoreAppointmentRequest extends FormRequest
         $this->merge([
             'appointmentAvailabilitySlot' => $this->appointmentAvailabilitySlotRepository->getAvailabilitySlot(
                 SlotData::from($this->only(['start', 'end']))
+            ),
+            'appointmentConfiguration' => $this->appointmentConfigurationRepository->getLatestVersion(
+                relations: ['configurationAvailabilitySlots']
             ),
         ]);
     }

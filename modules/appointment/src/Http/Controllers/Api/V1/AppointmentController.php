@@ -10,6 +10,7 @@ use AppointmentService\Appointment\Http\Requests\StoreAppointmentRequest;
 use AppointmentService\Appointment\Http\Requests\UpdateAppointmentRequest;
 use AppointmentService\Appointment\Models\Appointment\Appointment;
 use AppointmentService\Common\Http\Controllers\Controller;
+use AppointmentService\Common\Http\Response\Response;
 
 final class AppointmentController extends Controller
 {
@@ -33,9 +34,11 @@ final class AppointmentController extends Controller
      */
     public function store(StoreAppointmentRequest $request)
     {
-        return $this->appointmentService->create(
+        $this->appointmentService->create(
             $request->from(AppointmentSlotData::class)
         );
+
+        return response(status: Response::HTTP_CREATED);
     }
 
     /**

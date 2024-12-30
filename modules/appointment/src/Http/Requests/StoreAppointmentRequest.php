@@ -14,6 +14,13 @@ use Override;
 
 final class StoreAppointmentRequest extends FormRequest
 {
+    /**
+     * Indicates if the validator should stop on the first rule failure.
+     *
+     * @var bool
+     */
+    protected $stopOnFirstFailure = true;
+
     public function __construct(
         private readonly AppointmentAvailabilitySlotRepository $appointmentAvailabilitySlotRepository,
         private readonly AppointmentConfigurationRepository $appointmentConfigurationRepository
@@ -37,7 +44,7 @@ final class StoreAppointmentRequest extends FormRequest
         return [
             'start' => ['required', 'date', 'after:now'],
             'end' => ['required', 'date', 'after:start'],
-            'title' => ['required', 'string'],
+            'title' => ['required', 'string', 'max:255'],
             'appointmentAvailabilitySlot' => [new AppointmentAvailabilitySlotPresence],
             'appointmentConfiguration' => ['required', new RestrictOutOfConfigurationAvailabilitySlot],
         ];

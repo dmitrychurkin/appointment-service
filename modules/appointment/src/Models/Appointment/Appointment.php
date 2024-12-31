@@ -11,7 +11,7 @@ use AppointmentService\Common\Models\Model;
 
 final class Appointment extends Model
 {
-    use HasFactory, HasUuids, SoftDeletes;
+    use AppointmentRelations, HasFactory, HasUuids, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

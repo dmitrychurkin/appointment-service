@@ -17,9 +17,8 @@ final class AppointmentConfigurationRepository implements AppointmentConfigurati
 
     public function getLatestVersion(array|string $relations = []): ?AppointmentConfigurationModel
     {
-        return $this->account
-            ->appointmentConfigurations()
-            ->with($relations)
+        return AppointmentConfigurationModel::with($relations)
+            ->whereBelongsTo($this->account)
             ->latestVersion()
             ->first();
     }

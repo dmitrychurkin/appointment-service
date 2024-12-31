@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppointmentService\Appointment\Models\Account\Relations;
+namespace AppointmentService\Appointment\Models\User\Relations;
 
 use AppointmentService\Appointment\Models\Appointment\Appointment;
 use Illuminate\Database\Eloquent\Relations\HasMany;

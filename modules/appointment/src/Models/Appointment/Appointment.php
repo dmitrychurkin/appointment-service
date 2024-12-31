@@ -22,6 +22,7 @@ final class Appointment extends Model
         'start',
         'end',
         'title',
+        'user_id',
     ];
 
     /**

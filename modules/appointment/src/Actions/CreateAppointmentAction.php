@@ -37,7 +37,9 @@ final class CreateAppointmentAction
                     AppointmentAvailabilitySlotFactory::from(
                         SlotData::from([
                             'start' => $appointmentAvailabilitySlot->getStart(),
-                            'end' => $appointmentSlot->getStart(),
+                            'end' => $appointmentSlot->getStart()->subMinutes(
+                                $appointmentConfiguration->next_appointment_threshold_minutes
+                            ),
                         ])
                     )->make(),
                     AppointmentAvailabilitySlotFactory::from(

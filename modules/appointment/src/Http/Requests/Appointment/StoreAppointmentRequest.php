@@ -7,32 +7,19 @@ namespace AppointmentService\Appointment\Http\Requests\Appointment;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotRepository;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentConfiguration as AppointmentConfigurationRepository;
 use AppointmentService\Appointment\Data\SlotData;
+use AppointmentService\Appointment\Http\Requests\FormRequest;
 use AppointmentService\Appointment\Rules\AppointmentAvailabilitySlotPresence;
 use AppointmentService\Appointment\Rules\LimitNumberOfAppointments;
 use AppointmentService\Appointment\Rules\RestrictOutOfConfigurationAvailabilitySlot;
-use AppointmentService\Common\Http\Requests\FormRequest;
 use Override;
 
 final class StoreAppointmentRequest extends FormRequest
 {
-    /**
-     * Indicates if the validator should stop on the first rule failure.
-     *
-     * @var bool
-     */
-    protected $stopOnFirstFailure = true;
-
     public function __construct(
         private readonly AppointmentAvailabilitySlotRepository $appointmentAvailabilitySlotRepository,
-        private readonly AppointmentConfigurationRepository $appointmentConfigurationRepository
-    ) {}
-
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return true;
+        AppointmentConfigurationRepository $appointmentConfigurationRepository
+    ) {
+        parent::__construct($appointmentConfigurationRepository);
     }
 
     /**
@@ -40,9 +27,11 @@ final class StoreAppointmentRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    #[Override]
     public function rules(): array
     {
         return [
+            ...parent::rules(),
             'start' => ['required', 'date', 'after:now'],
             'end' => ['required', 'date', 'after:start'],
             'title' => ['required', 'string', 'max:255'],
@@ -64,9 +53,6 @@ final class StoreAppointmentRequest extends FormRequest
         $this->merge([
             'appointmentAvailabilitySlot' => $this->appointmentAvailabilitySlotRepository->getAvailabilitySlot(
                 SlotData::from($this->only(['start', 'end']))
-            ),
-            'appointmentConfiguration' => $this->appointmentConfigurationRepository->getLatestVersion(
-                relations: ['configurationAvailabilitySlots']
             ),
         ]);
     }

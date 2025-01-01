@@ -8,7 +8,7 @@ use AppointmentService\Appointment\Contracts\Availability;
 use AppointmentService\Appointment\Contracts\Slot;
 use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotModel;
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 interface AppointmentAvailabilitySlot
 {

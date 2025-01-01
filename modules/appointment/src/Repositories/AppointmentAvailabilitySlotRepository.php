@@ -7,9 +7,10 @@ namespace AppointmentService\Appointment\Repositories;
 use AppointmentService\Appointment\Contracts\Availability;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot;
 use AppointmentService\Appointment\Contracts\Slot;
+use AppointmentService\Appointment\Factories\AppointmentAvailabilitySlotCollectionFactory;
 use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotModel;
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 final class AppointmentAvailabilitySlotRepository implements AppointmentAvailabilitySlot
 {
@@ -27,7 +28,19 @@ final class AppointmentAvailabilitySlotRepository implements AppointmentAvailabi
 
     public function getAvailabilitySlots(Availability $availability): Collection
     {
-        return AppointmentAvailabilitySlotModel::whereAvailabilitySlots($availability)
+        $appointmentAvailabilitySlots = AppointmentAvailabilitySlotModel::whereDate('date', $availability->getDate())
+            ->orderBy('start')
             ->get();
+
+        return $appointmentAvailabilitySlots->when(
+            $appointmentAvailabilitySlots->isEmpty(),
+            fn () => AppointmentAvailabilitySlotCollectionFactory::from($availability)
+                ->withStart($availability->getDate())
+                ->withEnd($availability->getDate())
+                ->make(),
+            fn (Collection $appointmentAvailabilitySlots) => $appointmentAvailabilitySlots->filter(
+                fn (AppointmentAvailabilitySlotModel $appointmentAvailabilitySlot) => $appointmentAvailabilitySlot->duration >= $availability->getDuration()
+            )
+        );
     }
 }

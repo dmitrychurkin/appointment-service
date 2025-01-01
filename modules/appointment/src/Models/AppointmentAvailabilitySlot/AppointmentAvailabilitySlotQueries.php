@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Models\AppointmentAvailabilitySlot;
 
-use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\Queries\HasAvailabilitySlot;
+use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\Queries\AvailabilitySlot;
 
 trait AppointmentAvailabilitySlotQueries
 {
-    use HasAvailabilitySlot;
+    use AvailabilitySlot;
 }

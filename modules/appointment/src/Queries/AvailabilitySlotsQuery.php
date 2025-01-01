@@ -22,7 +22,7 @@ final class AvailabilitySlotsQuery
     {
         return $this->appointmentAvailabilitySlotRepository->getAvailabilitySlots($availability)
             ->reduce(function (Collection $slots, AppointmentAvailabilitySlot $availabilitySlot) use ($availability) {
-                foreach ($this->calculateAvailabilitySlots($availabilitySlot, $availability) as $slot) {
+                foreach ($this->generateAvailabilitySlots($availabilitySlot, $availability) as $slot) {
                     $slots->push($slot);
                 }
 
@@ -30,7 +30,7 @@ final class AvailabilitySlotsQuery
             }, collect());
     }
 
-    private function calculateAvailabilitySlots(AppointmentAvailabilitySlot $availabilitySlot, Availability $availability): Iterator
+    private function generateAvailabilitySlots(AppointmentAvailabilitySlot $availabilitySlot, Availability $availability): Iterator
     {
         $cursor = $availabilitySlot->getStart();
         $assertEdgeOverflow = fn (Carbon $cursor) => (

@@ -17,7 +17,9 @@ trait WithAppointmentConfiguration
 
     public function getConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection
     {
-        return $this->getAppointmentConfiguration()
-            ->getConfigurationAvailabilitySlots($date);
+        return once(
+            fn () => $this->getAppointmentConfiguration()
+                ->getConfigurationAvailabilitySlots($date)
+        );
     }
 }

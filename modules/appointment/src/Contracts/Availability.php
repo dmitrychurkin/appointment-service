@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Contracts;
 
-use DateTimeInterface;
+use Illuminate\Support\Carbon;
 
-interface Availability
+interface Availability extends SlotMethods
 {
-    public function getDate(): DateTimeInterface;
+    public function getDate(): Carbon;
 
     public function getDuration(): int;
 }

@@ -11,6 +11,8 @@ Route::prefix('api/v1')->middleware('api')->group(function () {
         ->only('store')
         ->middleware('auth:sanctum');
 
+    Route::get('availability/slots', [AvailabilityController::class, 'slots'])
+        ->middleware('auth:sanctum');
     Route::apiResource('availability', AvailabilityController::class)
         ->only('index')
         ->middleware('auth:sanctum');

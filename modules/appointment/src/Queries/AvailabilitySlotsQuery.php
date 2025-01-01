@@ -32,6 +32,10 @@ final class AvailabilitySlotsQuery
 
     private function generateAvailabilitySlots(AppointmentAvailabilitySlot $availabilitySlot, Availability $availability): Iterator
     {
+        if (! $availability->isBetween($availabilitySlot->getStart(), $availabilitySlot->getEnd())) {
+            return;
+        }
+
         $cursor = $availabilitySlot->getStart();
         $assertEdgeOverflow = fn (Carbon $cursor) => (
             $cursor->addMinutes($availability->getDuration())
@@ -43,10 +47,16 @@ final class AvailabilitySlotsQuery
                 break;
             }
 
-            yield SlotData::from([
+            $slot = SlotData::from([
                 'start' => $cursor->clone(),
                 'end' => $cursor->addMinutes($availability->getDuration())->clone(),
             ]);
+
+            if ($slot->getStart()->isPast()) {
+                continue;
+            }
+
+            yield $slot;
         }
     }
 }

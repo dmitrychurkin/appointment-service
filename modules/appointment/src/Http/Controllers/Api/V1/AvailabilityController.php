@@ -23,6 +23,14 @@ final class AvailabilityController extends Controller
      */
     public function index(AvailabilityData $availabilityData)
     {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function slots(AvailabilityData $availabilityData)
+    {
         return AvailabilityCollection::make(
             $this->availabilityService->getAvailabilitySlots($availabilityData)
         );

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppointmentService\Appointment\Http\Requests;
+namespace AppointmentService\Appointment\Http\Requests\Appointment;
 
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotRepository;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentConfiguration as AppointmentConfigurationRepository;

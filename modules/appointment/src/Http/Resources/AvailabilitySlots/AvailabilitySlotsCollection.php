@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppointmentService\Appointment\Http\Resources;
+namespace AppointmentService\Appointment\Http\Resources\AvailabilitySlots;
 
 use AppointmentService\Common\Http\Resources\ResourceCollection;
 use Illuminate\Http\Request;

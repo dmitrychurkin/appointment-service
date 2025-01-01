@@ -8,11 +8,13 @@ use AppointmentService\Appointment\Contracts\Repositories\Appointment as Appoint
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentConfiguration;
 use AppointmentService\Appointment\Contracts\Services\Appointment;
+use AppointmentService\Appointment\Contracts\Services\Availability;
 use AppointmentService\Appointment\Listeners\AppointmentEventSubscriber;
 use AppointmentService\Appointment\Repositories\AppointmentAvailabilitySlotRepository;
 use AppointmentService\Appointment\Repositories\AppointmentConfigurationRepository;
 use AppointmentService\Appointment\Repositories\AppointmentRepository;
 use AppointmentService\Appointment\Services\AppointmentService;
+use AppointmentService\Appointment\Services\AvailabilityService;
 use AppointmentService\Common\Facades\Event;
 use AppointmentService\Common\Providers\ServiceProvider;
 
@@ -28,6 +30,7 @@ final class AppointmentServiceProvider extends ServiceProvider
         AppointmentRepositoryContract::class => AppointmentRepository::class,
         AppointmentAvailabilitySlot::class => AppointmentAvailabilitySlotRepository::class,
         Appointment::class => AppointmentService::class,
+        Availability::class => AvailabilityService::class,
     ];
 
     /**
@@ -70,6 +73,7 @@ final class AppointmentServiceProvider extends ServiceProvider
     {
         return [
             Appointment::class,
+            Availability::class,
             AppointmentRepositoryContract::class,
             AppointmentAvailabilitySlot::class,
             AppointmentConfiguration::class,

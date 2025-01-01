@@ -26,7 +26,7 @@ final class AppointmentRepository implements Appointment
     public function getUserCountForDate(string|DateTimeInterface $date): int
     {
         return AppointmentModel::whereDate('start', now()->parse($date))
-            ->whereBelongsTo($this->user)
+            ->whereBelongsTo(auth()->user())
             ->count();
     }
 }

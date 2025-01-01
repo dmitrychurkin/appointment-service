@@ -6,8 +6,8 @@ namespace AppointmentService\Appointment\Http\Controllers\Api\V1;
 
 use AppointmentService\Appointment\Contracts\Services\Appointment as AppointmentService;
 use AppointmentService\Appointment\Data\AppointmentSlotData;
-use AppointmentService\Appointment\Http\Requests\StoreAppointmentRequest;
-use AppointmentService\Appointment\Http\Requests\UpdateAppointmentRequest;
+use AppointmentService\Appointment\Http\Requests\Appointment\StoreAppointmentRequest;
+use AppointmentService\Appointment\Http\Requests\Appointment\UpdateAppointmentRequest;
 use AppointmentService\Appointment\Models\Appointment\Appointment;
 use AppointmentService\Common\Http\Controllers\Controller;
 use AppointmentService\Common\Http\Response\Response;

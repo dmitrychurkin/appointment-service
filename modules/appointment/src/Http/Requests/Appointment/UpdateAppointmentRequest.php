@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppointmentService\Appointment\Http\Requests;
+namespace AppointmentService\Appointment\Http\Requests\Appointment;
 
 use AppointmentService\Common\Http\Requests\FormRequest;
 

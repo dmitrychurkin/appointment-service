@@ -16,8 +16,8 @@ final class AvailabilityData extends Data implements Availability
     public static function rules(): array
     {
         return [
-            'date' => ['required', 'date', 'after:yesterday', 'date_format:Y-m-d'],
-            'duration' => ['required', 'integer', 'min:1'],
+            'date' => ['required', 'date', 'date_format:Y-m-d', 'after:yesterday'],
+            'duration' => ['required', 'integer', 'min:1', 'max:1440'],
         ];
     }
 

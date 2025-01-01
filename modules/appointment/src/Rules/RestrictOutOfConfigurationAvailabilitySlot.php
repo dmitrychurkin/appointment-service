@@ -15,13 +15,20 @@ final class RestrictOutOfConfigurationAvailabilitySlot implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (! $value->configurationAvailabilitySlots->some(function (ConfigurationAvailabilitySlot $configurationAvailabilitySlot) {
-            if (! $configurationAvailabilitySlot->date || $configurationAvailabilitySlot->date->isSameDay(request('start'))) {
-                return
-                    ($configurationAvailabilitySlot->start_time->format('H:i:s') <= now()->parse(request('start'))->format('H:i:s')) &&
-                    ($configurationAvailabilitySlot->end_time->format('H:i:s') >= now()->parse(request('end'))->format('H:i:s'));
-            }
-        })) {
+        $start = now()->parse(request('start'));
+        $end = now()->parse(request('end'));
+
+        if (
+            ! $value->getConfigurationAvailabilitySlots($start)
+                ->some(function (ConfigurationAvailabilitySlot $configurationAvailabilitySlot) use ($start, $end) {
+                    $startTime = $configurationAvailabilitySlot->start_time->setDateFrom($start);
+                    $endTime = $configurationAvailabilitySlot->end_time->setDateFrom($start);
+
+                    return
+                        $start->isBetween($startTime, $endTime) &&
+                        $end->isBetween($startTime, $endTime);
+                })
+        ) {
             $fail('appointment::validation.appointment_slot_not_available')->translate();
         }
     }

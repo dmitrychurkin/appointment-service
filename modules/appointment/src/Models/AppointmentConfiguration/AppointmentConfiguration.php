@@ -7,6 +7,8 @@ namespace AppointmentService\Appointment\Models\AppointmentConfiguration;
 use AppointmentService\Common\Concerns\HasFactory;
 use AppointmentService\Common\Concerns\HasUuids;
 use AppointmentService\Common\Models\Model;
+use DateTimeInterface;
+use Illuminate\Support\Collection;
 use Override;
 
 final class AppointmentConfiguration extends Model
@@ -56,6 +58,11 @@ final class AppointmentConfiguration extends Model
     public function uniqueIds(): array
     {
         return ['id'];
+    }
+
+    public function getConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection
+    {
+        return $this->whereConfigurationAvailabilitySlots($date)->get();
     }
 
     #[Override]

@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Data;
 
+use AppointmentService\Appointment\Concerns\WithAppointmentConfiguration;
 use AppointmentService\Appointment\Contracts\AppointmentSlot;
 use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot;
 use AppointmentService\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 
 final class AppointmentSlotData extends SlotData implements AppointmentSlot
 {
+    use WithAppointmentConfiguration;
+
     public function __construct(
         public Carbon $start,
         public Carbon $end,
@@ -25,16 +27,5 @@ final class AppointmentSlotData extends SlotData implements AppointmentSlot
     public function getAppointmentAvailabilitySlot(): ?AppointmentAvailabilitySlot
     {
         return $this->appointmentAvailabilitySlot;
-    }
-
-    public function getAppointmentConfiguration(): AppointmentConfiguration
-    {
-        return $this->appointmentConfiguration;
-    }
-
-    public function getConfigurationAvailabilitySlots(): Collection
-    {
-        return $this->getAppointmentConfiguration()
-            ->configurationAvailabilitySlots;
     }
 }

@@ -6,6 +6,7 @@ namespace AppointmentService\Appointment\Http\Controllers\Api\V1;
 
 use AppointmentService\Appointment\Contracts\Services\Availability as AvailabilityService;
 use AppointmentService\Appointment\Data\AvailabilityData;
+use AppointmentService\Appointment\Http\Requests\Availability\GetAvailabilityRequest;
 use AppointmentService\Appointment\Http\Resources\Availability\AvailabilityCollection;
 use AppointmentService\Common\Http\Controllers\Controller;
 
@@ -21,7 +22,7 @@ final class AvailabilityController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(AvailabilityData $availabilityData)
+    public function index()
     {
         //
     }
@@ -29,10 +30,12 @@ final class AvailabilityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function slots(AvailabilityData $availabilityData)
+    public function slots(GetAvailabilityRequest $request)
     {
         return AvailabilityCollection::make(
-            $this->availabilityService->getAvailabilitySlots($availabilityData)
+            $this->availabilityService->getAvailabilitySlots(
+                $request->from(AvailabilityData::class)
+            )
         );
     }
 }

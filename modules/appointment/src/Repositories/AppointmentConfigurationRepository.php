@@ -19,7 +19,6 @@ final class AppointmentConfigurationRepository implements AppointmentConfigurati
     {
         return AppointmentConfigurationModel::with($relations)
             ->whereBelongsTo($this->account)
-            ->latestVersion()
             ->first();
     }
 }

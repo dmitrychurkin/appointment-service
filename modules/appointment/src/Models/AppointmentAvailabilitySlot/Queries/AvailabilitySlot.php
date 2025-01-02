@@ -20,8 +20,8 @@ trait AvailabilitySlot
     {
         return $this->when(
             is_array($date),
-            fn (Builder $query, array $dates) => $query->whereBetween('date', $dates),
-            fn (Builder $query, string|DateTimeInterface $date) => $query->whereDate('date', now()->parse($date))
+            fn (Builder $query) => $query->whereBetween('date', $date),
+            fn (Builder $query) => $query->whereDate('date', now()->parse($date))
         )
             ->when($order, fn (Builder $query, array $order) => $query->orderBy(...$order));
     }

@@ -35,7 +35,7 @@ final class AvailabilitySlotsQuery
     {
         return $this->appointmentAvailabilitySlotRepository->getAvailabilitySlots(
             date: $availabilitySlotsData->getDate(),
-            order: ['start']
+            orderBy: ['start']
         );
     }
 

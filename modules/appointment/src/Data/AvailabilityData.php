@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AppointmentService\Appointment\Data;
 
 use AppointmentService\Appointment\Concerns\WithAppointmentConfiguration;
+use AppointmentService\Appointment\Concerns\WithDuration;
 use AppointmentService\Appointment\Contracts\Availability;
 use AppointmentService\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
 use AppointmentService\Common\Casts\DateTimeCast;
@@ -14,7 +15,7 @@ use Spatie\LaravelData\Attributes\WithCast;
 
 final class AvailabilityData extends Data implements Availability
 {
-    use WithAppointmentConfiguration;
+    use WithAppointmentConfiguration, WithDuration;
 
     public function __construct(
         public readonly AppointmentConfiguration $appointmentConfiguration,
@@ -26,10 +27,5 @@ final class AvailabilityData extends Data implements Availability
     public function getDate(): Carbon
     {
         return $this->date ?? now();
-    }
-
-    public function getDuration(): int
-    {
-        return $this->duration;
     }
 }

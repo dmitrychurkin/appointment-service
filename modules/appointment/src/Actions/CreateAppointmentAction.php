@@ -61,7 +61,7 @@ final class CreateAppointmentAction
 
         return match ($appointmentAvailabilitySlot) {
             null => AppointmentAvailabilitySlotCollectionFactory::from($appointmentSlot)
-                ->withSlot($appointmentSlot)
+                ->withDate($appointmentSlot->getStart())
                 ->make(),
             default => $appointmentAvailabilitySlot->toCollection(),
         };

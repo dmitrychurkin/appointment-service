@@ -23,8 +23,13 @@ final class AppointmentAvailabilitySlotFactory extends DataFactory
     {
         $appointmentAvailabilitySlot = new AppointmentAvailabilitySlot;
 
-        $appointmentAvailabilitySlot->start = $this->slot->getStart();
-        $appointmentAvailabilitySlot->end = $this->slot->getEnd();
+        $start = $this->slot->getStart();
+        $end = $this->slot->getEnd();
+
+        $appointmentAvailabilitySlot->start = $start;
+        $appointmentAvailabilitySlot->end = $end;
+        $appointmentAvailabilitySlot->duration = $start->diffInMinutes($end);
+        $appointmentAvailabilitySlot->date = $start->toDateString();
 
         return $appointmentAvailabilitySlot;
     }

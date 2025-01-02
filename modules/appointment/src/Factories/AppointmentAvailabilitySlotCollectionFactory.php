@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace AppointmentService\Appointment\Factories;
 
 use AppointmentService\Appointment\Concerns\WithSlot;
-use AppointmentService\Appointment\Contracts\Slot;
 use AppointmentService\Appointment\Contracts\SlotConfiguration;
 use AppointmentService\Appointment\Data\SlotData;
 use AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot\ConfigurationAvailabilitySlot;
 use AppointmentService\Common\Factories\DataFactory;
+use DateTimeInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -22,32 +22,15 @@ final class AppointmentAvailabilitySlotCollectionFactory extends DataFactory
         return new self($appointmentConfiguration);
     }
 
-    private readonly Carbon $start;
-
-    private readonly Carbon $end;
+    private readonly Carbon $date;
 
     private function __construct(
         private readonly SlotConfiguration $appointmentConfiguration
     ) {}
 
-    public function withSlot(Slot $appointmentSlot): self
+    public function withDate(DateTimeInterface $date): self
     {
-        $this->start = $appointmentSlot->getStart();
-        $this->end = $appointmentSlot->getEnd();
-
-        return $this;
-    }
-
-    public function withStart(Carbon $start): self
-    {
-        $this->start = $start;
-
-        return $this;
-    }
-
-    public function withEnd(Carbon $end): self
-    {
-        $this->end = $end;
+        $this->date = $date;
 
         return $this;
     }
@@ -55,14 +38,14 @@ final class AppointmentAvailabilitySlotCollectionFactory extends DataFactory
     public function make(): Collection
     {
         return $this->appointmentConfiguration
-            ->getConfigurationAvailabilitySlots($this->start)
+            ->getConfigurationAvailabilitySlots($this->date)
             ->map(
                 fn (ConfigurationAvailabilitySlot $configurationAvailabilitySlot) => AppointmentAvailabilitySlotFactory::from(
                     SlotData::from([
                         'start' => $configurationAvailabilitySlot->start_time
-                            ->setDateFrom($this->start),
+                            ->setDateFrom($this->date),
                         'end' => $configurationAvailabilitySlot->end_time
-                            ->setDateFrom($this->end),
+                            ->setDateFrom($this->date),
                     ])
                 )->make()
             );

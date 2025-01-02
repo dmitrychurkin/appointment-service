@@ -17,7 +17,10 @@ trait ConfigurationAvailabilitySlots
             ->when(
                 is_array($date),
                 fn (Builder $query) => $query->orWhereBetween('date', $date),
-                fn (Builder $query) => $query->orWhereDate('date', now()->parse($date))
+                fn (Builder $query) => $query->when(
+                    $date,
+                    fn (Builder $query, string|DateTimeInterface $date) => $query->orWhereDate('date', now()->parse($date))
+                )
             );
     }
 }

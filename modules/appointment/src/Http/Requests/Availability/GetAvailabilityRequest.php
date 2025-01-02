@@ -7,7 +7,7 @@ namespace AppointmentService\Appointment\Http\Requests\Availability;
 use AppointmentService\Appointment\Http\Requests\FormRequest;
 use Override;
 
-final class GetAvailabilitySlotsRequest extends FormRequest
+final class GetAvailabilityRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

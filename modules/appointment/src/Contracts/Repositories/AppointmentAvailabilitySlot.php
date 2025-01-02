@@ -15,5 +15,5 @@ interface AppointmentAvailabilitySlot
 
     public function getAvailabilitySlot(Slot $appointmentSlot): ?AppointmentAvailabilitySlotModel;
 
-    public function getAvailabilitySlots(string|array|DateTimeInterface $date, ?array $order = null): Collection;
+    public function getAvailabilitySlots(string|array|DateTimeInterface $date, ?array $orderBy = null): Collection;
 }

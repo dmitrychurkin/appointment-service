@@ -24,9 +24,9 @@ final class AppointmentAvailabilitySlotRepository implements AppointmentAvailabi
             ->first();
     }
 
-    public function getAvailabilitySlots(string|array|DateTimeInterface $date, ?array $order = null): Collection
+    public function getAvailabilitySlots(string|array|DateTimeInterface $date, ?array $orderBy = null): Collection
     {
-        return AppointmentAvailabilitySlotModel::whereAvailabilitySlots($date, $order)
+        return AppointmentAvailabilitySlotModel::whereAvailabilitySlots($date, $orderBy)
             ->get();
     }
 }

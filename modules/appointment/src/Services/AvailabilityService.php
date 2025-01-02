@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Services;
 
-use AppointmentService\Appointment\Contracts\Availability as AvailabilityData;
+use AppointmentService\Appointment\Contracts\AvailabilitySlots as AvailabilitySlotsData;
 use AppointmentService\Appointment\Contracts\Services\Availability;
 use AppointmentService\Appointment\Queries\AvailabilitySlotsQuery;
 use Illuminate\Support\Collection;
@@ -15,10 +15,10 @@ final class AvailabilityService implements Availability
         private readonly AvailabilitySlotsQuery $availabilitySlotsQuery
     ) {}
 
-    public function getAvailabilitySlots(AvailabilityData $availability): Collection
+    public function getAvailabilitySlots(AvailabilitySlotsData $availabilitySlots): Collection
     {
         $execute = $this->availabilitySlotsQuery;
 
-        return $execute($availability);
+        return $execute($availabilitySlots);
     }
 }

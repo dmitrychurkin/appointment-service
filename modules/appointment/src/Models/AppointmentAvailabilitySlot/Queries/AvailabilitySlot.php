@@ -16,13 +16,13 @@ trait AvailabilitySlot
             ->where('end', '>=', $appointmentSlot->getEnd());
     }
 
-    public function whereAvailabilitySlots(string|array|DateTimeInterface $date, ?array $order = null): self
+    public function whereAvailabilitySlots(string|array|DateTimeInterface $date, ?array $orderBy = null): self
     {
         return $this->when(
             is_array($date),
-            fn (Builder $query, array $dates) => $query->whereBetween('date', $dates),
-            fn (Builder $query, string|DateTimeInterface $date) => $query->whereDate('date', now()->parse($date))
+            fn (Builder $query) => $query->whereBetween('date', $date),
+            fn (Builder $query) => $query->whereDate('date', now()->parse($date))
         )
-            ->when($order, fn (Builder $query, array $order) => $query->orderBy(...$order));
+            ->when($orderBy, fn (Builder $query, array $orderParams) => $query->orderBy(...$orderParams));
     }
 }

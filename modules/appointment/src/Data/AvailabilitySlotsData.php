@@ -6,14 +6,14 @@ namespace AppointmentService\Appointment\Data;
 
 use AppointmentService\Appointment\Concerns\WithAppointmentConfiguration;
 use AppointmentService\Appointment\Concerns\WithDuration;
-use AppointmentService\Appointment\Contracts\Availability;
+use AppointmentService\Appointment\Contracts\AvailabilitySlots;
 use AppointmentService\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
 use AppointmentService\Common\Casts\DateTimeCast;
 use AppointmentService\Common\Data\Data;
 use Illuminate\Support\Carbon;
 use Spatie\LaravelData\Attributes\WithCast;
 
-final class AvailabilityData extends Data implements Availability
+final class AvailabilitySlotsData extends Data implements AvailabilitySlots
 {
     use WithAppointmentConfiguration, WithDuration;
 

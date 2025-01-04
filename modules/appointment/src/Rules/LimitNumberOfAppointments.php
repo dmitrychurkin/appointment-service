@@ -17,7 +17,7 @@ final class LimitNumberOfAppointments implements ValidationRule
     {
         if (
             ! is_null($value->appointments_per_day) &&
-            (resolve(AppointmentRepository::class)->getUserCountForDate(request('start')) > $value->appointments_per_day)
+            (AppointmentRepository::getUserCountForDate(request('start')) > $value->appointments_per_day)
         ) {
             $fail('appointment::validation.appointment_slot_not_available')->translate();
         }

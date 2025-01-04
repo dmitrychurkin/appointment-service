@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Rules;
 
-use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotRepository;
 use AppointmentService\Common\Contracts\ValidationRule;
 use Closure;
+use Facades\AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot;
 
 final class AppointmentAvailabilitySlotPresence implements ValidationRule
 {
@@ -17,7 +17,7 @@ final class AppointmentAvailabilitySlotPresence implements ValidationRule
     {
         if (
             ! $value &&
-            resolve(AppointmentAvailabilitySlotRepository::class)->exists(request('start'))
+            AppointmentAvailabilitySlot::exists(request('start'))
         ) {
             $fail('appointment::validation.appointment_slot_not_available')->translate();
         }

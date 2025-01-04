@@ -38,7 +38,7 @@ final class AppointmentAvailabilitySlotCollectionFactory extends DataFactory
     public function make(): Collection
     {
         return $this->appointmentConfiguration
-            ->getConfigurationAvailabilitySlots($this->date)
+            ->selectConfigurationAvailabilitySlots($this->date)
             ->map(
                 fn (ConfigurationAvailabilitySlot $configurationAvailabilitySlot) => AppointmentAvailabilitySlotFactory::from(
                     SlotData::from([

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot;
 
+use AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot\Collections\ConfigurationAvailabilitySlotCollection;
 use AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot\Scopes\ConfigurationAvailabilitySlotOrderScope;
 use AppointmentService\Common\Concerns\HasFactory;
 use AppointmentService\Common\Concerns\HasUuids;
@@ -14,6 +15,13 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 class ConfigurationAvailabilitySlot extends Model
 {
     use ConfigurationAvailabilitySlotRelations, HasFactory, HasUuids;
+
+    /**
+     * The Eloquent collection class to use for the model.
+     *
+     * @var class-string<\Illuminate\Database\Eloquent\Collection<*, *>>
+     */
+    protected static string $collectionClass = ConfigurationAvailabilitySlotCollection::class;
 
     /**
      * Indicates if the model's ID is auto-incrementing.

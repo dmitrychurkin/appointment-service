@@ -15,11 +15,17 @@ trait WithAppointmentConfiguration
         return $this->appointmentConfiguration;
     }
 
-    public function getConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection
+    public function getConfigurationAvailabilitySlots(null|string|array|DateTimeInterface $date): Collection
     {
         return once(
             fn () => $this->appointmentConfiguration
                 ->getConfigurationAvailabilitySlots($date)
         );
+    }
+
+    public function selectConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection
+    {
+        return $this->getConfigurationAvailabilitySlots($date)
+            ->findByDate($date);
     }
 }

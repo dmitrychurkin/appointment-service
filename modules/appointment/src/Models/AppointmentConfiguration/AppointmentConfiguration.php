@@ -63,7 +63,7 @@ final class AppointmentConfiguration extends Model
         return ['id'];
     }
 
-    public function getConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection
+    public function getConfigurationAvailabilitySlots(null|string|array|DateTimeInterface $date): Collection
     {
         return $this->whereConfigurationAvailabilitySlots($date)->get();
     }

@@ -12,5 +12,7 @@ interface SlotConfiguration
 {
     public function getAppointmentConfiguration(): AppointmentConfiguration;
 
-    public function getConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection;
+    public function getConfigurationAvailabilitySlots(null|string|array|DateTimeInterface $date): Collection;
+
+    public function selectConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection;
 }

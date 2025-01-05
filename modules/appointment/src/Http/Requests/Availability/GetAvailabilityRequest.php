@@ -17,12 +17,29 @@ final class GetAvailabilityRequest extends FormRequest
     #[Override]
     public function rules(): array
     {
+        $commonDateRules = [
+            'sometimes',
+            'required',
+            'date',
+            'date_format:Y-m-d',
+        ];
+
         return [
             ...parent::rules(),
             'duration' => ['required', 'integer', 'min:1', 'max:1440'],
-            'date' => ['sometimes', 'required', 'date', 'date_format:Y-m-d', 'after:yesterday'],
-            'start' => ['sometimes', 'required', 'date', 'date_format:Y-m-d', 'after:yesterday'],
-            'end' => ['sometimes', 'required', 'date', 'date_format:Y-m-d', 'after:start'],
+            'date' => [
+                ...$commonDateRules,
+                'after:yesterday',
+            ],
+            'start' => [
+                ...$commonDateRules,
+                'after:yesterday',
+            ],
+            'end' => [
+                ...$commonDateRules,
+                'after:start',
+                'before_or_equal:'.now()->parse($this->input('start'))->addYear()->toDateString(),
+            ],
         ];
     }
 }

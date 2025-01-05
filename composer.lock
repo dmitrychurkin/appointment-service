@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8635446a7ad4dc5e1651beec7424b65e",
+    "content-hash": "f0ca7bcf27c3273bb1b2b79b92341f3d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -858,10 +858,11 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/auth",
-                "reference": "910111b32f9fb5d54d5d234b66816462dfc11fda"
+                "reference": "08110f61ee78a77f6aa88163aa20fc3787d4f3a8"
             },
             "require": {
                 "appointment-service/common": "dev-main",
+                "laravel/sanctum": "^4.0",
                 "php": "^8.2"
             },
             "type": "library",
@@ -918,6 +919,48 @@
             "autoload": {
                 "psr-4": {
                     "AppointmentService\\Common\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Churkin",
+                    "email": "dmitrychurkin1988@gmail.com"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "appointment-service/telemetry",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./modules/telemetry",
+                "reference": "d4697f6714e97938f0dee527c2fc37771a2d5456"
+            },
+            "require": {
+                "appointment-service/common": "dev-main",
+                "laravel/telescope": "^5.2",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "dont-discover": [
+                        "laravel/telescope"
+                    ],
+                    "providers": [
+                        "AppointmentService\\Telemetry\\TelemetryServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AppointmentService\\Telemetry\\": "src/"
                 }
             },
             "license": [
@@ -2525,6 +2568,75 @@
                 "source": "https://github.com/laravel/serializable-closure"
             },
             "time": "2024-12-16T15:26:28+00:00"
+        },
+        {
+            "name": "laravel/telescope",
+            "version": "v5.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/telescope.git",
+                "reference": "7ee46fbea8e3b01108575c8edf7377abddfe8bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/7ee46fbea8e3b01108575c8edf7377abddfe8bb9",
+                "reference": "7ee46fbea8e3b01108575c8edf7377abddfe8bb9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^8.37|^9.0|^10.0|^11.0",
+                "php": "^8.0",
+                "symfony/console": "^5.3|^6.0|^7.0",
+                "symfony/var-dumper": "^5.0|^6.0|^7.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "laravel/octane": "^1.4|^2.0|dev-develop",
+                "orchestra/testbench": "^6.40|^7.37|^8.17|^9.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.0|^10.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Telescope\\TelescopeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Telescope\\": "src/",
+                    "Laravel\\Telescope\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "mohamed@laravel.com"
+                }
+            ],
+            "description": "An elegant debug assistant for the Laravel framework.",
+            "keywords": [
+                "debugging",
+                "laravel",
+                "monitoring"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/telescope/issues",
+                "source": "https://github.com/laravel/telescope/tree/v5.2.6"
+            },
+            "time": "2024-11-25T20:34:58+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -10394,7 +10506,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "appointment-service/appointment": 20,
-        "appointment-service/auth": 20
+        "appointment-service/auth": 20,
+        "appointment-service/telemetry": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

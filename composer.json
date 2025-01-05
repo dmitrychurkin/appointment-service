@@ -8,8 +8,8 @@
         "php": "^8.2",
         "appointment-service/appointment": "dev-main",
         "appointment-service/auth": "dev-main",
+        "appointment-service/telemetry": "dev-main",
         "laravel/framework": "^11.37",
-        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10"
     },
     "require-dev": {
@@ -72,6 +72,10 @@
         "common": {
             "type": "path",
             "url": "./modules/common"
+        },
+        "telemetry": {
+            "type": "path",
+            "url": "./modules/telemetry"
         }
     },
     "config": {

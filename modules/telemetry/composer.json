@@ -1,9 +1,9 @@
 {
-    "name": "appointment-service/auth",
+    "name": "appointment-service/telemetry",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "AppointmentService\\Auth\\": "src/"
+            "AppointmentService\\Telemetry\\": "src/"
         }
     },
     "authors": [
@@ -15,18 +15,15 @@
     "require": {
         "php": "^8.2",
         "appointment-service/common": "dev-main",
-        "laravel/sanctum": "^4.0"
-    },
-    "repositories": {
-        "common": {
-            "type": "path",
-            "url": "../common"
-        }
+        "laravel/telescope": "^5.2"
     },
     "extra": {
         "laravel": {
+            "dont-discover": [
+                "laravel/telescope"
+            ],
             "providers": [
-                "AppointmentService\\Auth\\AuthServiceProvider"
+                "AppointmentService\\Telemetry\\TelemetryServiceProvider"
             ]
         }
     },

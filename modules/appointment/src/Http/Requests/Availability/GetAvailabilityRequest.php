@@ -19,8 +19,10 @@ final class GetAvailabilityRequest extends FormRequest
     {
         return [
             ...parent::rules(),
-            'date' => ['sometimes', 'required', 'date', 'date_format:Y-m-d', 'after:yesterday'],
             'duration' => ['required', 'integer', 'min:1', 'max:1440'],
+            'date' => ['sometimes', 'required', 'date', 'date_format:Y-m-d', 'after:yesterday'],
+            'start' => ['sometimes', 'required', 'date', 'date_format:Y-m-d', 'after:yesterday'],
+            'end' => ['sometimes', 'required', 'date', 'date_format:Y-m-d', 'after:start'],
         ];
     }
 }

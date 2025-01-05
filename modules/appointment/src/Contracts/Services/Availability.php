@@ -10,4 +10,6 @@ use Illuminate\Support\Collection;
 interface Availability
 {
     public function getAvailabilitySlots(AvailabilityData $availability): Collection;
+
+    public function getAvailability(AvailabilityData $availability): Collection;
 }

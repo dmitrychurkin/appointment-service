@@ -6,9 +6,7 @@ namespace AppointmentService\Appointment\Contracts;
 
 use Illuminate\Support\Carbon;
 
-interface Availability extends Slot, SlotConfiguration
+interface Availability extends Slot, SlotConfiguration, SlotDuration
 {
     public function getDate(): Carbon;
-
-    public function getDuration(): int;
 }

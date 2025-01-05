@@ -22,9 +22,14 @@ final class AvailabilityData extends Data implements Availability
         public readonly int $duration,
         #[WithCast(DateTimeCast::class, 'Y-m-d')]
         public readonly ?Carbon $date = null,
-        private readonly ?Carbon $start = null,
-        private readonly ?Carbon $end = null
-    ) {}
+        #[WithCast(DateTimeCast::class, 'Y-m-d')]
+        public ?Carbon $start = null,
+        #[WithCast(DateTimeCast::class, 'Y-m-d')]
+        public ?Carbon $end = null,
+    ) {
+        $this->start = now()->parse($start)->startOfDay();
+        $this->end = now()->parse($end)->endOfDay();
+    }
 
     public function getDate(): Carbon
     {

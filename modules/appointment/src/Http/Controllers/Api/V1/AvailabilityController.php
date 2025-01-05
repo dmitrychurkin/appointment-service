@@ -22,9 +22,13 @@ final class AvailabilityController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(GetAvailabilityRequest $request)
     {
-        //
+        return response()->json([
+            'data' => $this->availabilityService->getAvailability(
+                $request->from(AvailabilityData::class)
+            ),
+        ]);
     }
 
     /**

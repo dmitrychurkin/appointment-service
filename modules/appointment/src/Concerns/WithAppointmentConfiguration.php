@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 
 trait WithAppointmentConfiguration
 {
-    private static Collection $configurationAvailabilitySlots;
+    private Collection $configurationAvailabilitySlots;
 
     public function getAppointmentConfiguration(): AppointmentConfiguration
     {
@@ -19,12 +19,12 @@ trait WithAppointmentConfiguration
 
     public function getConfigurationAvailabilitySlots(null|string|array|DateTimeInterface $date): Collection
     {
-        if (! isset(self::$configurationAvailabilitySlots)) {
-            self::$configurationAvailabilitySlots = $this->appointmentConfiguration
+        if (! isset($this->configurationAvailabilitySlots)) {
+            $this->configurationAvailabilitySlots = $this->appointmentConfiguration
                 ->getConfigurationAvailabilitySlots($date);
         }
 
-        return self::$configurationAvailabilitySlots;
+        return $this->configurationAvailabilitySlots;
     }
 
     public function selectConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection

@@ -27,17 +27,12 @@ final class AvailabilityQuery
 
         $availabilitySlots = $this->getAvailabilitySlots($availability);
 
-        return $this->calculateAvailabilitySlots($availabilitySlots, $availability);
-    }
-
-    private function calculateAvailabilitySlots(Collection $availabilitySlots, Availability $availability): Collection
-    {
         $collection = collect();
 
         $cursor = $availability->getStart();
 
         while ($cursor->lessThanOrEqualTo($availability->getEnd())) {
-            $availabilitySlotsCollection = $this->findAvailabilitySlots($availabilitySlots, $cursor);
+            [$availabilitySlotsCollection, $availabilitySlots] = $this->findAvailabilitySlots($availabilitySlots, $cursor);
 
             $count = $this->mapAvailabilitySlots($availabilitySlotsCollection, $availability, $cursor)
                 ->reduce(function (int $counter, AppointmentAvailabilitySlot $appointmentAvailabilitySlot) use ($availability) {
@@ -57,11 +52,35 @@ final class AvailabilityQuery
         return $collection;
     }
 
-    private function findAvailabilitySlots(Collection &$availabilitySlots, Carbon $date): Collection
+    private function findAvailabilitySlots(Collection $availabilitySlots, Carbon $date): array
     {
-        return $availabilitySlots->filter(
-            fn (AppointmentAvailabilitySlot $availabilitySlot) => $availabilitySlot->getStart()->isSameDay($date)
-        );
+        $collection = collect();
+        $first = $availabilitySlots->first();
+
+        if (! $first?->date->isSameDay($date)) {
+            return [
+                $collection,
+                $availabilitySlots,
+            ];
+        }
+
+        $offset = 0;
+
+        foreach ($availabilitySlots as $availabilitySlot) {
+            if ($availabilitySlot->date->isSameDay($date)) {
+                $offset += 1;
+                $collection->push($availabilitySlot);
+
+                continue;
+            }
+
+            break;
+        }
+
+        return [
+            $collection,
+            $availabilitySlots->slice($offset),
+        ];
     }
 
     private function getAvailabilitySlots(Availability $availability): Collection

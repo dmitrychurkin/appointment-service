@@ -14,11 +14,11 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/contracts": "^11.35",
-        "illuminate/database": "^11.35",
-        "illuminate/notifications": "^11.35",
-        "illuminate/support": "^11.35",
-        "illuminate/view": "^11.35",
+        "illuminate/contracts": "^11.37",
+        "illuminate/database": "^11.37",
+        "illuminate/notifications": "^11.37",
+        "illuminate/support": "^11.37",
+        "illuminate/view": "^11.37",
         "spatie/laravel-data": "^4.11"
     },
     "extra": {

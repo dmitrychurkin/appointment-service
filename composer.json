@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "appointment-service/administration": "dev-main",
         "appointment-service/appointment": "dev-main",
         "appointment-service/auth": "dev-main",
         "appointment-service/telemetry": "dev-main",
@@ -61,6 +62,10 @@
         }
     },
     "repositories": {
+        "administration": {
+            "type": "path",
+            "url": "./modules/administration"
+        },
         "appointment": {
             "type": "path",
             "url": "./modules/appointment"

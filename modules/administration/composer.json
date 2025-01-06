@@ -1,9 +1,9 @@
 {
-    "name": "appointment-service/telemetry",
+    "name": "appointment-service/administration",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "AppointmentService\\Telemetry\\": "src/"
+            "AppointmentService\\Administration\\": "src/"
         }
     },
     "authors": [
@@ -14,15 +14,15 @@
     ],
     "require": {
         "php": "^8.2",
-        "laravel/telescope": "^5.2"
+        "moonshine/moonshine": "^3.1"
     },
     "extra": {
         "laravel": {
             "dont-discover": [
-                "laravel/telescope"
+                "moonshine/moonshine"
             ],
             "providers": [
-                "AppointmentService\\Telemetry\\TelemetryServiceProvider"
+                "AppointmentService\\Administration\\AdministrationServiceProvider"
             ]
         }
     },

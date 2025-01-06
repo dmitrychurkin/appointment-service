@@ -41,5 +41,8 @@ final class RunAppDatabaseMigrations extends Command
 
         $this->comment('Running telemetry module migrations...');
         $this->call('migrate', ['--path' => '/modules/telemetry/database/migrations']);
+
+        $this->comment('Running administration module migrations...');
+        $this->call('migrate', ['--path' => '/modules/administration/database/migrations']);
     }
 }

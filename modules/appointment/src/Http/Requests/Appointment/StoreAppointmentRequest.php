@@ -32,8 +32,7 @@ final class StoreAppointmentRequest extends FormRequest
     {
         return [
             ...parent::rules(),
-            'start' => ['required', 'date', 'after:now'],
-            'end' => ['required', 'date', 'after:start'],
+            ...$this->getSlotRules(),
             'title' => ['required', 'string', 'max:255'],
             'appointmentAvailabilitySlot' => [new AppointmentAvailabilitySlotPresence],
             'appointmentConfiguration' => [
@@ -52,8 +51,16 @@ final class StoreAppointmentRequest extends FormRequest
     {
         $this->merge([
             'appointmentAvailabilitySlot' => $this->appointmentAvailabilitySlotRepository->getAvailabilitySlot(
-                SlotData::from($this->only(['start', 'end']))
+                SlotData::from($this->validate($this->getSlotRules()))
             ),
         ]);
+    }
+
+    private function getSlotRules(): array
+    {
+        return [
+            'start' => ['required', 'date', 'after:now'],
+            'end' => ['required', 'date', 'after:start'],
+        ];
     }
 }

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace AppointmentService\Administration\Layouts;
 
 use AppointmentService\Administration\Resources\Appointment\AccountResource;
+use AppointmentService\Administration\Resources\Appointment\AppointmentConfigurationResource;
+use AppointmentService\Administration\Resources\Appointment\AppointmentResource;
 use AppointmentService\Administration\Resources\Appointment\ConfigurationAvailabilitySlotResource;
 use AppointmentService\Administration\Resources\Appointment\UserResource;
 use AppointmentService\Administration\Resources\System\SystemUserResource;
@@ -46,6 +48,14 @@ final class DashboardLayout extends AppLayout
                 MenuItem::make(
                     static fn () => __('moonshine::ui.resource.module.appointment.account_title'),
                     AccountResource::class
+                ),
+                MenuItem::make(
+                    static fn () => __('moonshine::ui.resource.module.appointment.appointment_title'),
+                    AppointmentResource::class
+                ),
+                MenuItem::make(
+                    static fn () => __('moonshine::ui.resource.module.appointment.appointment_configuration_title'),
+                    AppointmentConfigurationResource::class
                 ),
                 MenuItem::make(
                     static fn () => __('moonshine::ui.resource.module.appointment.configuration_availability_slot_title'),

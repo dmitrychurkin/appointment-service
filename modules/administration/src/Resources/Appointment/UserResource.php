@@ -29,6 +29,8 @@ final class UserResource extends ModelResource
 
     protected string $column = 'id';
 
+    protected array $with = ['account'];
+
     public function getTitle(): string
     {
         return Str::singular(__('moonshine::ui.resource.module.appointment.user_title'));
@@ -80,12 +82,15 @@ final class UserResource extends ModelResource
                 'account',
                 formatted: static fn (Account $model) => $model->slug,
                 resource: AccountResource::class,
-            )->badge(Color::PURPLE),
+            )
+                ->badge(Color::PURPLE)
+                ->searchable()
+                ->required(),
 
-            Date::make('Created At', 'created_at')
+            Date::make('Created At')
                 ->readonly(),
 
-            Date::make('Updated At', 'updated_at')
+            Date::make('Updated At')
                 ->readonly(),
         ];
     }

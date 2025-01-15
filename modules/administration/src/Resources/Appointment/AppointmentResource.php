@@ -4,25 +4,32 @@ declare(strict_types=1);
 
 namespace AppointmentService\Administration\Resources\Appointment;
 
-use AppointmentService\Appointment\Models\Account\Account;
+use AppointmentService\Appointment\Models\Appointment\Appointment;
+use AppointmentService\Appointment\Models\User\User;
 use AppointmentService\Common\Facades\Str;
+use MoonShine\Laravel\Enums\Action;
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\Support\Attributes\Icon;
+use MoonShine\Support\Enums\Color;
+use MoonShine\Support\ListOf;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\Date;
 use MoonShine\UI\Fields\ID;
 use MoonShine\UI\Fields\Text;
 
-#[Icon('user-circle')]
-final class AccountResource extends ModelResource
+#[Icon('ticket')]
+final class AppointmentResource extends ModelResource
 {
-    protected string $model = Account::class;
+    protected string $model = Appointment::class;
 
     protected string $column = 'id';
 
+    protected array $with = ['user'];
+
     public function getTitle(): string
     {
-        return Str::singular(__('moonshine::ui.resource.module.appointment.account_title'));
+        return Str::singular(__('moonshine::ui.resource.module.appointment.appointment_title'));
     }
 
     protected function detailFields(): iterable
@@ -49,10 +56,23 @@ final class AccountResource extends ModelResource
                 ->sortable()
                 ->readonly(),
 
-            Text::make('Name')
+            Text::make('Title')
                 ->required(),
 
-            Text::make('Slug')
+            Date::make('Start')
+                ->readonly(),
+
+            Date::make('End')
+                ->readonly(),
+
+            BelongsTo::make(
+                'User',
+                'user',
+                formatted: static fn (User $model) => $model->email,
+                resource: UserResource::class,
+            )
+                ->badge(Color::PRIMARY)
+                ->searchable()
                 ->required(),
 
             Date::make('Created At')
@@ -64,5 +84,11 @@ final class AccountResource extends ModelResource
             Date::make('Deleted At')
                 ->readonly(),
         ];
+    }
+
+    protected function activeActions(): ListOf
+    {
+        return parent::activeActions()
+            ->only(Action::VIEW);
     }
 }

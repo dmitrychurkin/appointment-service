@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace AppointmentService\Administration;
 
 use AppointmentService\Administration\Resources\Appointment\AccountResource;
+use AppointmentService\Administration\Resources\Appointment\AppointmentConfigurationResource;
+use AppointmentService\Administration\Resources\Appointment\AppointmentResource;
 use AppointmentService\Administration\Resources\Appointment\ConfigurationAvailabilitySlotResource;
 use AppointmentService\Administration\Resources\Appointment\UserResource;
 use AppointmentService\Administration\Resources\System\SystemUserResource;
@@ -38,7 +40,9 @@ final class AdministrationServiceProvider extends ServiceProvider
                 UserRoleResource::class,
                 UserResource::class,
                 AccountResource::class,
+                AppointmentConfigurationResource::class,
                 ConfigurationAvailabilitySlotResource::class,
+                AppointmentResource::class,
             ])
             ->pages([
                 ...$config->getPages(),

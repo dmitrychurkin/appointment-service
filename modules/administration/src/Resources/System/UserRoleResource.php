@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppointmentService\Administration\Resources;
+namespace AppointmentService\Administration\Resources\System;
 
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\Models\MoonshineUserRole;
@@ -17,7 +17,7 @@ use MoonShine\UI\Fields\Text;
 /**
  * @extends ModelResource<MoonshineUserRole>
  */
-class MoonShineUserRoleResource extends ModelResource
+final class UserRoleResource extends ModelResource
 {
     protected string $model = MoonshineUserRole::class;
 

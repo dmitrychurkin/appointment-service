@@ -7,7 +7,7 @@ namespace AppointmentService\Administration\Pages;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Laravel\Pages\Page;
 
-class Dashboard extends Page
+final class Dashboard extends Page
 {
     /**
      * @return array<string, string>

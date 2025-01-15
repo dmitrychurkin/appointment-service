@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AppointmentService\Administration\Resources;
+namespace AppointmentService\Administration\Resources\System;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Validation\Rule;
@@ -31,7 +31,7 @@ use MoonShine\UI\Fields\Text;
 /**
  * @extends ModelResource<MoonshineUser>
  */
-class MoonShineUserResource extends ModelResource
+final class SystemUserResource extends ModelResource
 {
     protected string $model = MoonshineUser::class;
 
@@ -62,7 +62,7 @@ class MoonShineUserResource extends ModelResource
                 __('moonshine::ui.resource.role'),
                 'moonshineUserRole',
                 formatted: static fn (MoonshineUserRole $model) => $model->name,
-                resource: MoonShineUserRoleResource::class,
+                resource: UserRoleResource::class,
             )->badge(Color::PURPLE),
 
             Text::make(__('moonshine::ui.resource.name'), 'name'),
@@ -97,7 +97,7 @@ class MoonShineUserResource extends ModelResource
                             __('moonshine::ui.resource.role'),
                             'moonshineUserRole',
                             formatted: static fn (MoonshineUserRole $model) => $model->name,
-                            resource: MoonShineUserRoleResource::class,
+                            resource: UserRoleResource::class,
                         )
                             ->reactive()
                             ->creatable()
@@ -173,7 +173,7 @@ class MoonShineUserResource extends ModelResource
                 __('moonshine::ui.resource.role'),
                 'moonshineUserRole',
                 formatted: static fn (MoonshineUserRole $model) => $model->name,
-                resource: MoonShineUserRoleResource::class,
+                resource: UserRoleResource::class,
             )->valuesQuery(static fn (Builder $q) => $q->select(['id', 'name'])),
 
             Email::make('E-mail', 'email'),

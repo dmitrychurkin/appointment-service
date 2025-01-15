@@ -17,12 +17,12 @@
         "appointment-service/common": "dev-main",
         "laravel/sanctum": "^4.0"
     },
-    "repositories": {
-        "common": {
+    "repositories": [
+        {
             "type": "path",
-            "url": "../common"
+            "url": "./modules/*"
         }
-    },
+    ],
     "extra": {
         "laravel": {
             "providers": [

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace AppointmentService\Administration;
 
-use AppointmentService\Administration\Resources\MoonShineUserResource;
-use AppointmentService\Administration\Resources\MoonShineUserRoleResource;
+use AppointmentService\Administration\Resources\Appointment\AccountResource;
+use AppointmentService\Administration\Resources\Appointment\ConfigurationAvailabilitySlotResource;
+use AppointmentService\Administration\Resources\Appointment\UserResource;
+use AppointmentService\Administration\Resources\System\SystemUserResource;
+use AppointmentService\Administration\Resources\System\UserRoleResource;
 use AppointmentService\Common\Providers\ServiceProvider;
 use MoonShine\Contracts\Core\DependencyInjection\ConfiguratorContract;
 use MoonShine\Contracts\Core\DependencyInjection\CoreContract;
@@ -31,8 +34,11 @@ final class AdministrationServiceProvider extends ServiceProvider
 
         $core
             ->resources([
-                MoonShineUserResource::class,
-                MoonShineUserRoleResource::class,
+                SystemUserResource::class,
+                UserRoleResource::class,
+                UserResource::class,
+                AccountResource::class,
+                ConfigurationAvailabilitySlotResource::class,
             ])
             ->pages([
                 ...$config->getPages(),

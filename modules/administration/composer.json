@@ -14,8 +14,16 @@
     ],
     "require": {
         "php": "^8.2",
+        "appointment-service/appointment": "dev-main",
+        "appointment-service/common": "dev-main",
         "moonshine/moonshine": "^3.1"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./modules/*"
+        }
+    ],
     "extra": {
         "laravel": {
             "dont-discover": [

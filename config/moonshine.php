@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AppointmentService\Administration\Layouts\MoonShineLayout;
+use AppointmentService\Administration\Layouts\DashboardLayout;
 use AppointmentService\Administration\Pages\Dashboard as PagesDashboard;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -76,7 +76,7 @@ return [
     ],
 
     // Layout, pages, forms
-    'layout' => MoonShineLayout::class,
+    'layout' => DashboardLayout::class,
 
     'forms' => [
         'login' => LoginForm::class,

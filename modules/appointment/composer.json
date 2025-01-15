@@ -16,12 +16,12 @@
         "php": "^8.2",
         "appointment-service/common": "dev-main"
     },
-    "repositories": {
-        "common": {
+    "repositories": [
+        {
             "type": "path",
-            "url": "../common"
+            "url": "./modules/*"
         }
-    },
+    ],
     "extra": {
         "laravel": {
             "providers": [

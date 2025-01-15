@@ -10,7 +10,7 @@
         "appointment-service/appointment": "dev-main",
         "appointment-service/auth": "dev-main",
         "appointment-service/telemetry": "dev-main",
-        "laravel/framework": "^11.37",
+        "laravel/framework": "^11.38",
         "laravel/tinker": "^2.10"
     },
     "require-dev": {
@@ -61,28 +61,12 @@
             "dont-discover": []
         }
     },
-    "repositories": {
-        "administration": {
+    "repositories": [
+        {
             "type": "path",
-            "url": "./modules/administration"
-        },
-        "appointment": {
-            "type": "path",
-            "url": "./modules/appointment"
-        },
-        "auth": {
-            "type": "path",
-            "url": "./modules/auth"
-        },
-        "common": {
-            "type": "path",
-            "url": "./modules/common"
-        },
-        "telemetry": {
-            "type": "path",
-            "url": "./modules/telemetry"
+            "url": "./modules/*"
         }
-    },
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

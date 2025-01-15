@@ -52,6 +52,14 @@ return [
         'password' => 'Password',
     ],
     'resource' => [
+        'module' => [
+            'appointment' => [
+                'name' => 'Appointment',
+                'configuration_availability_slot_title' => 'Configuration Availability Slots',
+                'account_title' => 'Accounts',
+                'user_title' => 'Users',
+            ],
+        ],
         'system' => 'System',
         'role' => 'Roles',
         'name' => 'Name',

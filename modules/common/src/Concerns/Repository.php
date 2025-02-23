@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 trait Repository
 {
     private Builder $query {
-        get => $this->query ?: $this->model::query();
+        get => $this->query ?? $this->model::query();
         set => $this->query = $value;
     }
 

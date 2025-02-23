@@ -22,7 +22,7 @@ final class AppointmentRepository implements Appointment
     {
         ['start' => $start, 'end' => $end, 'title' => $title] = $appointmentSlot->toArray();
 
-        return $this->query->create([
+        return $this->model::create([
             'start' => $start,
             'end' => $end,
             'title' => $title,

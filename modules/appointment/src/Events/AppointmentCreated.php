@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Events;
 
-use AppointmentService\Appointment\Contracts\AppointmentSlot;
+use AppointmentService\Appointment\Models\Appointment\Appointment;
 use AppointmentService\Common\Concerns\Dispatchable;
 
-final class AvailabilitySlotsCreated
+final class AppointmentCreated
 {
     use Dispatchable;
 
     public function __construct(
-        public readonly AppointmentSlot $appointmentSlot
+        public readonly Appointment $appointment
     ) {}
 }

@@ -6,14 +6,19 @@ namespace AppointmentService\Appointment\Actions;
 
 use AppointmentService\Appointment\Contracts\AppointmentSlot;
 use AppointmentService\Appointment\Data\SlotData;
-use AppointmentService\Appointment\Events\AvailabilitySlotsCreated;
+use AppointmentService\Appointment\Events\AppointmentCreated;
 use AppointmentService\Appointment\Factories\AppointmentAvailabilitySlotCollectionFactory;
 use AppointmentService\Appointment\Factories\AppointmentAvailabilitySlotFactory;
 use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot;
+use AppointmentService\Appointment\Repositories\AppointmentRepository;
 use Illuminate\Support\Collection;
 
 final class CreateAppointmentAction
 {
+    public function __construct(
+        private readonly AppointmentRepository $appointmentRepository
+    ) {}
+
     public function __invoke(AppointmentSlot $appointmentSlot)
     {
         $this->calculateAvailabilitySlots($appointmentSlot)
@@ -23,7 +28,9 @@ final class CreateAppointmentAction
 
         $this->deleteCurrentAppointmentAvailabilitySlot($appointmentSlot->getAppointmentAvailabilitySlot());
 
-        AvailabilitySlotsCreated::dispatch($appointmentSlot);
+        $appointment = $this->appointmentRepository->createAppointment($appointmentSlot);
+
+        AppointmentCreated::dispatch($appointment);
     }
 
     private function calculateAvailabilitySlots(AppointmentSlot $appointmentSlot): Collection

@@ -6,16 +6,23 @@ namespace AppointmentService\Appointment\Repositories;
 
 use AppointmentService\Appointment\Contracts\Repositories\Appointment;
 use AppointmentService\Appointment\Models\Appointment\Appointment as AppointmentModel;
+use AppointmentService\Common\Concerns\Repository;
 use AppointmentService\Common\Contracts\TransformableData;
 use DateTimeInterface;
 
 final class AppointmentRepository implements Appointment
 {
-    public function createAppointment(TransformableData $appointmentSlot): void
+    use Repository;
+
+    public function __construct(
+        private readonly AppointmentModel $model
+    ) {}
+
+    public function createAppointment(TransformableData $appointmentSlot): AppointmentModel
     {
         ['start' => $start, 'end' => $end, 'title' => $title] = $appointmentSlot->toArray();
 
-        AppointmentModel::create([
+        return $this->query->create([
             'start' => $start,
             'end' => $end,
             'title' => $title,
@@ -25,7 +32,7 @@ final class AppointmentRepository implements Appointment
 
     public function getUserCountForDate(string|DateTimeInterface $date): int
     {
-        return AppointmentModel::whereDate('start', now()->parse($date))
+        return $this->query->whereDate('start', now()->parse($date))
             ->whereBelongsTo(auth()->user())
             ->count();
     }

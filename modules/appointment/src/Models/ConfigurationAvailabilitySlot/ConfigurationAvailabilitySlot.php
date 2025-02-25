@@ -46,6 +46,7 @@ class ConfigurationAvailabilitySlot extends Model
         'start_time',
         'end_time',
         'date',
+        'day_of_week',
     ];
 
     /**

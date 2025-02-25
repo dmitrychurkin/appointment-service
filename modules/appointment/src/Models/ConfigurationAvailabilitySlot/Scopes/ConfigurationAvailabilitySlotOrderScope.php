@@ -16,6 +16,7 @@ final class ConfigurationAvailabilitySlotOrderScope implements Scope
     public function apply(Builder $builder, Model $model): void
     {
         $builder->orderBy('date')
+            ->orderBy('day_of_week')
             ->orderBy('start_time');
     }
 }

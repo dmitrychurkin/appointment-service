@@ -6,6 +6,7 @@ namespace AppointmentService\Administration\Resources\Appointment;
 
 use AppointmentService\Appointment\Models\ConfigurationAvailabilitySlot\ConfigurationAvailabilitySlot;
 use AppointmentService\Common\Facades\Str;
+use Carbon\WeekDay;
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Resources\ModelResource;
@@ -15,6 +16,8 @@ use MoonShine\Support\ListOf;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\Date;
 use MoonShine\UI\Fields\ID;
+use MoonShine\UI\Fields\Select;
+use MoonShine\UI\Fields\Text;
 
 #[Icon('wrench-screwdriver')]
 final class ConfigurationAvailabilitySlotResource extends ModelResource
@@ -58,12 +61,22 @@ final class ConfigurationAvailabilitySlotResource extends ModelResource
                 ->searchable()
                 ->required(),
 
-            Date::make('Start Time')
-                ->format('H:i')
+            Select::make('Day of week')
+                ->options([
+                    WeekDay::int(WeekDay::Monday) => 'Monday',
+                    WeekDay::int(WeekDay::Tuesday) => 'Tuesday',
+                    WeekDay::int(WeekDay::Wednesday) => 'Wednesday',
+                    WeekDay::int(WeekDay::Thursday) => 'Thursday',
+                    WeekDay::int(WeekDay::Friday) => 'Friday',
+                    WeekDay::int(WeekDay::Saturday) => 'Saturday',
+                    WeekDay::int(WeekDay::Sunday) => 'Sunday',
+                ])
+                ->searchable(),
+
+            Text::make('Start Time')
                 ->required(),
 
-            Date::make('End Time')
-                ->format('H:i')
+            Text::make('End Time')
                 ->required(),
 
             Date::make('Date')

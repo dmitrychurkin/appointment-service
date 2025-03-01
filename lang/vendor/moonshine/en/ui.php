@@ -57,6 +57,7 @@ return [
                 'name' => 'Appointment',
                 'appointment_configuration_title' => 'Appointment Configurations',
                 'configuration_availability_slot_title' => 'Configuration Availability Slots',
+                'configuration_recurrence_title' => 'Configuration Recurrences',
                 'account_title' => 'Accounts',
                 'user_title' => 'Users',
                 'appointment_title' => 'Appointments',

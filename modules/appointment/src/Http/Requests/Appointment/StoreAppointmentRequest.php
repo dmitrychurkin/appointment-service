@@ -9,6 +9,7 @@ use AppointmentService\Appointment\Contracts\Repositories\AppointmentConfigurati
 use AppointmentService\Appointment\Data\SlotData;
 use AppointmentService\Appointment\Http\Requests\FormRequest;
 use AppointmentService\Appointment\Rules\AppointmentAvailabilitySlotPresence;
+use AppointmentService\Appointment\Rules\GeneralAvailability;
 use AppointmentService\Appointment\Rules\LimitNumberOfAppointments;
 use AppointmentService\Appointment\Rules\RestrictOutOfConfigurationAvailabilitySlot;
 use Override;
@@ -38,6 +39,7 @@ final class StoreAppointmentRequest extends FormRequest
             'appointmentConfiguration' => [
                 'required',
                 new LimitNumberOfAppointments,
+                new GeneralAvailability,
                 new RestrictOutOfConfigurationAvailabilitySlot,
             ],
         ];

@@ -63,7 +63,9 @@ final class ConfigurationAvailabilitySlotCollection extends CommonCollection
 
         foreach ($this as $slot) {
             if (is_null($slot->date)) {
-                $recurringConfigurationAvailabilitySlots->push($slot);
+                if ($slot->day_of_week === $date->dayOfWeek) {
+                    $recurringConfigurationAvailabilitySlots->push($slot);
+                }
 
                 continue;
             }

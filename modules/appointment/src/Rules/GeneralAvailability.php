@@ -4,22 +4,25 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Rules;
 
-use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotModel;
+use AppointmentService\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
 use AppointmentService\Common\Contracts\ValidationRule;
 use AppointmentService\Common\Exceptions\ValidationException;
 use Closure;
 use DateTimeInterface;
-use Facades\AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot;
 
-final class AppointmentAvailabilitySlotPresence implements ValidationRule
+final class GeneralAvailability implements ValidationRule
 {
     public static function test(
-        ?AppointmentAvailabilitySlotModel $appointmentAvailabilitySlot,
+        AppointmentConfiguration $appointmentConfiguration,
         string|DateTimeInterface $startDate
     ): void {
+        $start = now()->parse($startDate);
+        $configurationRecurrence = $appointmentConfiguration->configurationRecurrence;
+
         if (
-            ! $appointmentAvailabilitySlot &&
-            AppointmentAvailabilitySlot::exists($startDate)
+            $start->isBefore($configurationRecurrence->start) ||
+            ($configurationRecurrence->end && $start->greaterThanOrEqualTo($configurationRecurrence->end)) ||
+            (floor($configurationRecurrence->start->diffInWeeks($start, true)) % $configurationRecurrence->repeat_every_weeks)
         ) {
             throw new ValidationException(
                 message: 'appointment::validation.appointment_slot_not_available'

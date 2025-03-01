@@ -19,6 +19,13 @@ final class AppointmentConfiguration extends Model
     use AppointmentConfigurationQueries, AppointmentConfigurationRelations, HasFactory, HasUuids;
 
     /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['configurationRecurrence'];
+
+    /**
      * Indicates if the model's ID is auto-incrementing.
      *
      * @var bool

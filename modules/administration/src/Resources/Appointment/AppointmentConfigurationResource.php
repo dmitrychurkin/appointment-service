@@ -10,6 +10,7 @@ use AppointmentService\Common\Facades\Str;
 use MoonShine\Laravel\Enums\Action;
 use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Fields\Relationships\HasMany;
+use MoonShine\Laravel\Fields\Relationships\HasOne;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\Support\Attributes\Icon;
 use MoonShine\Support\Enums\Color;
@@ -68,6 +69,13 @@ final class AppointmentConfigurationResource extends ModelResource
                 resource: ConfigurationAvailabilitySlotResource::class,
             )
                 ->badge(Color::RED),
+
+            HasOne::make(
+                'Configuration Recurrence',
+                'configurationRecurrence',
+                resource: ConfigurationRecurrenceResource::class,
+            )
+                ->badge(Color::BLUE),
 
             Number::make('Version')
                 ->readonly(),

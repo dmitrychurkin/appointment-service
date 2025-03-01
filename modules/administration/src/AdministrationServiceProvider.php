@@ -8,6 +8,7 @@ use AppointmentService\Administration\Resources\Appointment\AccountResource;
 use AppointmentService\Administration\Resources\Appointment\AppointmentConfigurationResource;
 use AppointmentService\Administration\Resources\Appointment\AppointmentResource;
 use AppointmentService\Administration\Resources\Appointment\ConfigurationAvailabilitySlotResource;
+use AppointmentService\Administration\Resources\Appointment\ConfigurationRecurrenceResource;
 use AppointmentService\Administration\Resources\Appointment\UserResource;
 use AppointmentService\Administration\Resources\System\SystemUserResource;
 use AppointmentService\Administration\Resources\System\UserRoleResource;
@@ -42,6 +43,7 @@ final class AdministrationServiceProvider extends ServiceProvider
                 AccountResource::class,
                 AppointmentConfigurationResource::class,
                 ConfigurationAvailabilitySlotResource::class,
+                ConfigurationRecurrenceResource::class,
                 AppointmentResource::class,
             ])
             ->pages([

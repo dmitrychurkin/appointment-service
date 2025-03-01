@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('configuration_recurrence');
+        Schema::dropIfExists('configuration_recurrences');
     }
 };

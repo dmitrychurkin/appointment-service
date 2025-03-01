@@ -8,11 +8,6 @@ use DateTimeInterface;
 
 trait ConfigurationAvailabilitySlotMethods
 {
-    public function isRecurring(): bool
-    {
-        return is_null($this->date);
-    }
-
     public function isSameWeekDay(DateTimeInterface $date): bool
     {
         return $this->day_of_week === $date->dayOfWeek;

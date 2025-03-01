@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "laravel/telescope": "^5.2"
+        "laravel/telescope": "^5.5"
     },
     "extra": {
         "laravel": {

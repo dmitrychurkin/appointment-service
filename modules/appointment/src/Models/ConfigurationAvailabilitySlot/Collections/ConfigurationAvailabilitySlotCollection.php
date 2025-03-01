@@ -62,7 +62,7 @@ final class ConfigurationAvailabilitySlotCollection extends CommonCollection
         $fixedConfigurationAvailabilitySlots = collect();
 
         foreach ($this as $slot) {
-            if ($slot->isRecurring()) {
+            if ($slot->is_recurring) {
                 if ($slot->isSameWeekDay($date)) {
                     $recurringConfigurationAvailabilitySlots->push($slot);
                 }

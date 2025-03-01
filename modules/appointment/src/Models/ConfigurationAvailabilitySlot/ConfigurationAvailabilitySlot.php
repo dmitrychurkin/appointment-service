@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 #[ScopedBy([ConfigurationAvailabilitySlotOrderScope::class])]
 final class ConfigurationAvailabilitySlot extends Model
 {
-    use ConfigurationAvailabilitySlotRelations, HasFactory, HasUuids;
+    use ConfigurationAvailabilitySlotMethods, ConfigurationAvailabilitySlotRelations, HasFactory, HasUuids;
 
     /**
      * The Eloquent collection class to use for the model.

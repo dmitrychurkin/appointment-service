@@ -8,15 +8,13 @@ use AppointmentService\Appointment\Models\AppointmentConfiguration\Scopes\Appoin
 use AppointmentService\Common\Concerns\HasFactory;
 use AppointmentService\Common\Concerns\HasUuids;
 use AppointmentService\Common\Models\Model;
-use DateTimeInterface;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
-use Illuminate\Support\Collection;
 use Override;
 
 #[ScopedBy([AppointmentConfigurationOrderScope::class])]
 final class AppointmentConfiguration extends Model
 {
-    use AppointmentConfigurationQueries, AppointmentConfigurationRelations, HasFactory, HasUuids;
+    use AppointmentConfigurationMethods, AppointmentConfigurationQueries, AppointmentConfigurationRelations, HasFactory, HasUuids;
 
     /**
      * The relationships that should always be loaded.
@@ -68,11 +66,6 @@ final class AppointmentConfiguration extends Model
     public function uniqueIds(): array
     {
         return ['id'];
-    }
-
-    public function getConfigurationAvailabilitySlots(null|string|array|DateTimeInterface $date): Collection
-    {
-        return $this->whereConfigurationAvailabilitySlots($date)->get();
     }
 
     #[Override]

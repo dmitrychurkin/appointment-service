@@ -10,7 +10,7 @@
         "appointment-service/appointment": "dev-main",
         "appointment-service/auth": "dev-main",
         "appointment-service/telemetry": "dev-main",
-        "laravel/framework": "^11.38",
+        "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10"
     },
     "require-dev": {
@@ -19,9 +19,9 @@
         "laravel/pail": "^1.2",
         "laravel/pint": "^1.21",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.5",
+        "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^3.7",
-        "pestphp/pest-plugin-laravel": "^3.0"
+        "pestphp/pest-plugin-laravel": "^3.1"
     },
     "autoload": {
         "psr-4": {

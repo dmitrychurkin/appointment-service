@@ -12,7 +12,7 @@ use AppointmentService\Common\Models\Model;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 
 #[ScopedBy([ConfigurationAvailabilitySlotOrderScope::class])]
-class ConfigurationAvailabilitySlot extends Model
+final class ConfigurationAvailabilitySlot extends Model
 {
     use ConfigurationAvailabilitySlotRelations, HasFactory, HasUuids;
 
@@ -61,5 +61,15 @@ class ConfigurationAvailabilitySlot extends Model
             'end_time' => 'datetime:H:i',
             'date' => 'immutable_date',
         ];
+    }
+
+    /**
+     * Get the columns that should receive a unique identifier.
+     *
+     * @return array<int, string>
+     */
+    public function uniqueIds(): array
+    {
+        return ['id'];
     }
 }

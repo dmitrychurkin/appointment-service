@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
-namespace AppointmentService\Appointment\Concerns;
+namespace AppointmentService\Appointment\Concerns\AppointmentConfiguration;
 
-use AppointmentService\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;
+use AppointmentService\Common\Exceptions\ValidationException;
 use DateTimeInterface;
 use Illuminate\Support\Collection;
 
-trait WithAppointmentConfiguration
+trait WithConfigurationAvailabilitySlots
 {
-    private Collection $configurationAvailabilitySlots;
+    use WithConfigurationRecurrence;
 
-    public function getAppointmentConfiguration(): AppointmentConfiguration
-    {
-        return $this->appointmentConfiguration;
-    }
+    private Collection $configurationAvailabilitySlots;
 
     public function getConfigurationAvailabilitySlots(null|string|array|DateTimeInterface $date): Collection
     {
@@ -29,7 +26,13 @@ trait WithAppointmentConfiguration
 
     public function selectConfigurationAvailabilitySlots(null|string|DateTimeInterface $date): Collection
     {
-        return $this->getConfigurationAvailabilitySlots($date)
-            ->findByDate($date);
+        try {
+            return $this->getConfigurationAvailabilitySlots(
+                $this->withConfigurationRecurrence($date)
+            )
+                ->findByDate($date);
+        } catch (ValidationException) {
+            return collect();
+        }
     }
 }

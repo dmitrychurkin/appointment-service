@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Data;
 
-use AppointmentService\Appointment\Concerns\WithAppointmentConfiguration;
+use AppointmentService\Appointment\Concerns\AppointmentConfiguration\WithAppointmentConfiguration;
 use AppointmentService\Appointment\Concerns\WithSlot;
 use AppointmentService\Appointment\Contracts\Availability;
 use AppointmentService\Appointment\Models\AppointmentConfiguration\AppointmentConfiguration;

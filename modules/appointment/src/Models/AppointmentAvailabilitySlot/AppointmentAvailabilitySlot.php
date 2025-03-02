@@ -16,7 +16,7 @@ use Override;
 #[ObservedBy(AppointmentAvailabilitySlotObserver::class)]
 final class AppointmentAvailabilitySlot extends Model implements Slot
 {
-    use AppointmentAvailabilitySlotAttributes, AppointmentAvailabilitySlotMutations, Collectionable, HasFactory, HasUuids, WithSlot;
+    use AppointmentAvailabilitySlotAttributes, AppointmentAvailabilitySlotMutations, AppointmentAvailabilitySlotRelations, Collectionable, HasFactory, HasUuids, WithSlot;
 
     /**
      * The table associated with the model.

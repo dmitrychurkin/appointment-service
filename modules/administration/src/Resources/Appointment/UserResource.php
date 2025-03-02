@@ -77,6 +77,9 @@ final class UserResource extends ModelResource
             Email::make('Email')
                 ->required(),
 
+            Text::make('Timezone')
+                ->required(),
+
             BelongsTo::make(
                 'Account',
                 'account',

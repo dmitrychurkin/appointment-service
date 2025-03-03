@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Repositories;
 
-use AppointmentService\Appointment\Attributes\CurrentAccount;
 use AppointmentService\Appointment\Contracts\Repositories\AppointmentAvailabilitySlot;
 use AppointmentService\Appointment\Contracts\Slot;
 use AppointmentService\Appointment\Models\Account\Account;
 use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\AppointmentAvailabilitySlot as AppointmentAvailabilitySlotModel;
+use AppointmentService\Common\Attributes\CurrentAccount;
 use AppointmentService\Common\Concerns\Repository;
 use DateTimeInterface;
 use Illuminate\Support\Collection;
@@ -24,7 +24,7 @@ final class AppointmentAvailabilitySlotRepository implements AppointmentAvailabi
 
     public function __construct(
         private readonly AppointmentAvailabilitySlotModel $model,
-        #[CurrentAccount] private readonly Account $account,
+        #[CurrentAccount(castTo: Account::class)] private readonly Account $account,
     ) {}
 
     public function exists(string|DateTimeInterface $date): bool

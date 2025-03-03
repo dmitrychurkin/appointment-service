@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace AppointmentService\Appointment\Models\AppointmentAvailabilitySlot;
 
-use AppointmentService\Appointment\Attributes\CurrentAccount;
 use AppointmentService\Appointment\Models\Account\Account;
+use AppointmentService\Common\Attributes\CurrentAccount;
 
 final class AppointmentAvailabilitySlotObserver
 {
     public function __construct(
-        #[CurrentAccount] private readonly Account $account
+        #[CurrentAccount(castTo: Account::class)] private readonly Account $account
     ) {}
 
     /**

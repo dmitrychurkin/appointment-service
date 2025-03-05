@@ -11,15 +11,17 @@ use AppointmentService\Appointment\Models\AppointmentAvailabilitySlot\Appointmen
 use AppointmentService\Common\Attributes\CurrentAccount;
 use AppointmentService\Common\Concerns\Repository;
 use DateTimeInterface;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 final class AppointmentAvailabilitySlotRepository implements AppointmentAvailabilitySlot
 {
     use Repository;
 
     private Builder $accountQuery {
-        get => $this->query->whereBelongsTo($this->account);
+        get {
+        return $this->query->whereBelongsTo($this->account);
+    }
     }
 
     public function __construct(

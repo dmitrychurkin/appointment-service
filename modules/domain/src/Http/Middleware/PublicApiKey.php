@@ -10,7 +10,6 @@ use AppointmentService\Domain\Data\OriginData;
 use Closure;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\ItemNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 
 final class PublicApiKey
@@ -43,7 +42,7 @@ final class PublicApiKey
                     key: $publicApiKey
                 )
             );
-        } catch (ModelNotFoundException|ItemNotFoundException) {
+        } catch (ModelNotFoundException) {
             return abort(HttpResponse::HTTP_FORBIDDEN);
         }
 

@@ -7,11 +7,17 @@ namespace AppointmentService\Domain\Models\AccountDomain;
 use AppointmentService\Common\Concerns\HasFactory;
 use AppointmentService\Common\Concerns\HasUuids;
 use AppointmentService\Common\Models\Model;
-use Override;
 
 final class AccountDomain extends Model
 {
     use AccountDomainRelations, HasFactory, HasUuids;
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['domainApiKey'];
 
     /**
      * The attributes that are mass assignable.
@@ -27,11 +33,5 @@ final class AccountDomain extends Model
     public function uniqueIds(): array
     {
         return ['uuid'];
-    }
-
-    #[Override]
-    public function newEloquentBuilder($query): AccountDomainBuilder
-    {
-        return new AccountDomainBuilder($query);
     }
 }

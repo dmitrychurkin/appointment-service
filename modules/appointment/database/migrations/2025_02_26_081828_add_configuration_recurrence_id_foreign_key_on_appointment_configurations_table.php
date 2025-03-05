@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignUuid('configuration_recurrence_id')
                 ->nullable()
                 ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->nullOnUpdate()
+                ->nullOnDelete();
         });
     }
 

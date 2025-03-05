@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace AppointmentService\Domain\Models\AccountDomain\Relations;
 
 use AppointmentService\Domain\Models\DomainApiKey\DomainApiKey;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-trait DomainApiKeyHasMany
+trait DomainApiKeyHasOne
 {
-    public function domainApiKeys()
+    public function domainApiKey(): HasOne
     {
-        return $this->hasMany(DomainApiKey::class);
+        return $this->hasOne(DomainApiKey::class);
     }
 }

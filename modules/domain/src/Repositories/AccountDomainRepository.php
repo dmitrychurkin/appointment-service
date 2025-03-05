@@ -23,7 +23,6 @@ final class AccountDomainRepository implements AccountDomain
     public function getAccountDomain(Origin $origin): AccountDomainModel
     {
         return $this->query
-            ->withDomainApiKeys($origin->key)
             ->whereBelongsTo($this->account)
             ->where('domain', $origin->domain)
             ->firstOrFail();

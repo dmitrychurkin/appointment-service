@@ -10,7 +10,6 @@ use AppointmentService\Domain\Contracts\Services\Domain;
 use AppointmentService\Domain\Data\OriginData;
 use AppointmentService\Domain\Http\Middleware\PublicApiKey;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\ItemNotFoundException;
 
 final class AccountDomainController extends Controller
 {
@@ -37,7 +36,7 @@ final class AccountDomainController extends Controller
                     PublicApiKey::HEADER_NAME => $domain->key,
                 ]
             );
-        } catch (ModelNotFoundException|ItemNotFoundException) {
+        } catch (ModelNotFoundException) {
             return response(status: Response::HTTP_FORBIDDEN);
         }
     }

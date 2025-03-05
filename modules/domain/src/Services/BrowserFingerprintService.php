@@ -19,6 +19,11 @@ final class BrowserFingerprintService implements BrowserFingerprint
     }
     }
 
+    public function setFingerprint(string $fingerprint): void
+    {
+        $this->fingerprint = $fingerprint;
+    }
+
     public function compareFingerprint(string $fingerprint): bool
     {
         return $this->fingerprint === $fingerprint;

@@ -8,8 +8,9 @@ interface BrowserFingerprint
 {
     public ?string $fingerprint {
         get;
-
     }
+
+    public function setFingerprint(string $fingerprint): void;
 
     public function compareFingerprint(string $fingerprint): bool;
 }

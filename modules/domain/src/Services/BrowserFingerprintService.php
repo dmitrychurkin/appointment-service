@@ -10,22 +10,18 @@ final class BrowserFingerprintService implements BrowserFingerprint
 {
     private const SESSION_KEY = 'browser_fingerprint';
 
-    public ?string $fingerprint {
-        get {
+    public function getFingerprint(): ?string
+    {
         return session(self::SESSION_KEY);
-    }
-    set {
-        session([self::SESSION_KEY => $value]);
-    }
     }
 
     public function setFingerprint(string $fingerprint): void
     {
-        $this->fingerprint = $fingerprint;
+        session([self::SESSION_KEY => $fingerprint]);
     }
 
     public function compareFingerprint(string $fingerprint): bool
     {
-        return $this->fingerprint === $fingerprint;
+        return $this->getFingerprint() === $fingerprint;
     }
 }

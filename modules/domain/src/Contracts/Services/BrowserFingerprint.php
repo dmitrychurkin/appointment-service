@@ -6,9 +6,7 @@ namespace AppointmentService\Domain\Contracts\Services;
 
 interface BrowserFingerprint
 {
-    public ?string $fingerprint {
-        get;
-    }
+    public function getFingerprint(): ?string;
 
     public function setFingerprint(string $fingerprint): void;
 

@@ -33,8 +33,8 @@ final class BrowserFingerprint
         }
 
         // If the browser fingerprint is not stored in the session, store it.
-        if (! $this->browserFingerprintService->getFingerprint() && $browserFingerprint) {
-            $this->browserFingerprintService->setFingerprint($browserFingerprint);
+        if (! $this->browserFingerprintService->fingerprint && $browserFingerprint) {
+            $this->browserFingerprintService->fingerprint = $browserFingerprint;
 
             return $next($request);
         }

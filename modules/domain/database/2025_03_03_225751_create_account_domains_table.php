@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreignId('domain_api_key_id')
                 ->nullable()
                 ->constrained()
-                ->nullOnUpdate()
+                ->cascadeOnUpdate()
                 ->nullOnDelete();
             $table->string('domain')->unique();
             $table->timestamps();

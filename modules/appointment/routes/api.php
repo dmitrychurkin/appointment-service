@@ -6,14 +6,15 @@ use AppointmentService\Appointment\Http\Controllers\Api\V1\AppointmentController
 use AppointmentService\Appointment\Http\Controllers\Api\V1\AvailabilityController;
 use AppointmentService\Common\Facades\Route;
 
-Route::prefix('api/v1')->middleware('api')->group(function () {
-    Route::apiResource('appointments', AppointmentController::class)
-        ->only('store')
-        ->middleware('auth:sanctum');
+Route::prefix(config('appointment.prefix'))
+    ->name(config('appointment.name'))
+    ->middleware(config('appointment.middleware'))
+    ->group(function () {
+        Route::apiResource('', AppointmentController::class)
+            ->only('store');
 
-    Route::get('availability/slots', [AvailabilityController::class, 'slots'])
-        ->middleware('auth:sanctum');
-    Route::apiResource('availability', AvailabilityController::class)
-        ->only('index')
-        ->middleware('auth:sanctum');
-});
+        Route::get('availability/slots', [AvailabilityController::class, 'slots'])
+            ->name('availability.slots');
+        Route::apiResource('availability', AvailabilityController::class)
+            ->only('index');
+    });

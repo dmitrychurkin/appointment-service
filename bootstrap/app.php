@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use AppointmentService\Domain\Http\Middleware\BrowserFingerprint;
+use AppointmentService\Domain\Http\Middleware\PublicApiKey;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,7 +16,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->statefulApi();
+        $middleware
+            ->group('domain.security', [
+                BrowserFingerprint::class,
+                PublicApiKey::class,
+            ])
+            ->statefulApi();
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

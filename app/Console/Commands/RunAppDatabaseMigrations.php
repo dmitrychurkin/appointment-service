@@ -30,6 +30,9 @@ final class RunAppDatabaseMigrations extends Command
         $this->comment('Running application migrations...');
         $this->call('migrate');
 
+        $this->comment('Running domain module migrations...');
+        $this->call('migrate', ['--path' => '/modules/domain/database/migrations']);
+
         $this->comment('Running appointment module migrations...');
         $this->call('migrate', ['--path' => '/modules/appointment/database/migrations']);
 

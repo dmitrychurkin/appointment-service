@@ -25,6 +25,7 @@ final class AccountDomain extends Model
      * @var array
      */
     protected $fillable = [
+        'domain_api_key_id',
         'account_id',
         'domain',
         'uuid',

@@ -62,6 +62,11 @@ return [
                 'user_title' => 'Users',
                 'appointment_title' => 'Appointments',
             ],
+            'domain' => [
+                'name' => 'Domain',
+                'account_domain_title' => 'Domains',
+                'domain_api_key_title' => 'Domain Api Keys',
+            ],
         ],
         'system' => 'System',
         'role' => 'Roles',

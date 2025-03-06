@@ -10,6 +10,8 @@ use AppointmentService\Administration\Resources\Appointment\AppointmentResource;
 use AppointmentService\Administration\Resources\Appointment\ConfigurationAvailabilitySlotResource;
 use AppointmentService\Administration\Resources\Appointment\ConfigurationRecurrenceResource;
 use AppointmentService\Administration\Resources\Appointment\UserResource;
+use AppointmentService\Administration\Resources\Domain\AccountDomainResource;
+use AppointmentService\Administration\Resources\Domain\DomainApiKeyResource;
 use AppointmentService\Administration\Resources\System\SystemUserResource;
 use AppointmentService\Administration\Resources\System\UserRoleResource;
 use MoonShine\ColorManager\ColorManager;
@@ -65,6 +67,16 @@ final class DashboardLayout extends AppLayout
                 MenuItem::make(
                     static fn () => __('moonshine::ui.resource.module.appointment.configuration_recurrence_title'),
                     ConfigurationRecurrenceResource::class
+                ),
+            ]),
+            MenuGroup::make(static fn () => __('moonshine::ui.resource.module.domain.name'), [
+                MenuItem::make(
+                    static fn () => __('moonshine::ui.resource.module.domain.account_domain_title'),
+                    AccountDomainResource::class
+                ),
+                MenuItem::make(
+                    static fn () => __('moonshine::ui.resource.module.domain.domain_api_key_title'),
+                    DomainApiKeyResource::class
                 ),
             ]),
         ];

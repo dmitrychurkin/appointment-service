@@ -10,6 +10,8 @@ use AppointmentService\Administration\Resources\Appointment\AppointmentResource;
 use AppointmentService\Administration\Resources\Appointment\ConfigurationAvailabilitySlotResource;
 use AppointmentService\Administration\Resources\Appointment\ConfigurationRecurrenceResource;
 use AppointmentService\Administration\Resources\Appointment\UserResource;
+use AppointmentService\Administration\Resources\Domain\AccountDomainResource;
+use AppointmentService\Administration\Resources\Domain\DomainApiKeyResource;
 use AppointmentService\Administration\Resources\System\SystemUserResource;
 use AppointmentService\Administration\Resources\System\UserRoleResource;
 use AppointmentService\Common\Providers\ServiceProvider;
@@ -45,6 +47,8 @@ final class AdministrationServiceProvider extends ServiceProvider
                 ConfigurationAvailabilitySlotResource::class,
                 ConfigurationRecurrenceResource::class,
                 AppointmentResource::class,
+                AccountDomainResource::class,
+                DomainApiKeyResource::class,
             ])
             ->pages([
                 ...$config->getPages(),
